@@ -1,25 +1,34 @@
 import express from 'express';
-import { createBaselineCharacter } from '@dungeon-maister/rule-engine';
-import { Character } from '@dungeon-maister/data-models';
+import { createBaselineCharacter, performSkillCheck } from '@dungeon-maister/rule-engine';
 
-// Create a sample character using your rule engine
-const sampleCharacter: Character = createBaselineCharacter(
-  'char-01',
-  'Boric the Brave'
-);
-
-// Log the character to the console to see the result
-console.log('Generated Character:', sampleCharacter);
-
+// Create our sample character once when the server starts
+const playerCharacter = createBaselineCharacter('char-01', 'Boric the Brave');
 
 const app = express();
 const PORT = 3000;
 
-app.get('/', (req, res) => {
-  // Send the character data as a JSON response
-  res.json(sampleCharacter);
+// This middleware is needed to read JSON from requests
+app.use(express.json());
+
+// A new endpoint to handle player commands
+app.post('/command', (req, res) => {
+  const commandText: string = req.body.command || '';
+  console.log(`Received command: "${commandText}"`);
+
+  let responseMessage = "I don't understand that command.";
+
+  // Simple command parser
+  if (commandText.toLowerCase() === 'roll perception') {
+    // A Skill Check is 1d20 + mods vs a DC
+    const success = performSkillCheck(playerCharacter, 'perception', 15);
+    responseMessage = success ? 'You notice something glittering in the corner!' : 'You see nothing out of the ordinary.';
+  }
+
+  res.json({ reply: responseMessage });
 });
+
 
 app.listen(PORT, () => {
   console.log(`[server]: Server is running at http://localhost:${PORT}`);
+  console.log('Player character created:', playerCharacter.name);
 });

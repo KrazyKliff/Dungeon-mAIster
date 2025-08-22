@@ -4,7 +4,7 @@ import { Skill } from './skills.model';
 // The main interface for any character in the game
 export interface Character {
   id: string;
-  name:. string;
+  name: string;
 
   // Attributes
   subAttributes: Record<SubAttributeName, SubAttribute>;
