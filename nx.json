@@ -14,8 +14,7 @@
       "!{projectRoot}/test-setup.[jt]s"
     ],
     "sharedGlobals": [
-      "{workspaceRoot}/.gitlab-ci.yml",
-      "{workspaceRoot}/jest.preset.js"
+      "{workspaceRoot}/.gitlab-ci.yml"
     ]
   },
   "plugins": [

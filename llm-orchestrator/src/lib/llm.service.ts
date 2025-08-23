@@ -9,8 +9,7 @@ dotenv.config();
  */
 export async function askAI(prompt: string): Promise<string> {
   const apiKey = process.env.LLM_API_KEY;
-  // This is the API endpoint for the Gemini Pro model
-  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
+  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
   if (!apiKey) {
     throw new Error('LLM_API_KEY is not set in the .env file.');
@@ -20,7 +19,6 @@ export async function askAI(prompt: string): Promise<string> {
     const response = await axios.post(
       apiUrl,
       {
-        // This is the request body structure for the Gemini API
         contents: [{
           parts: [{
             text: prompt
@@ -34,7 +32,6 @@ export async function askAI(prompt: string): Promise<string> {
       }
     );
 
-    // This is how we parse the response from the Gemini API
     return response.data.candidates[0].content.parts[0].text;
   } catch (error) {
     console.error('Error calling Gemini API:', error.response?.data?.error || error.message);

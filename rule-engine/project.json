@@ -5,5 +5,18 @@
   "projectType": "library",
   "tags": [],
   "// targets": "to see all targets run: nx show project rule-engine --web",
-  "targets": {}
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/rule-engine"],
+      "inputs": [
+        "default",
+        "sharedGlobals",
+        "{workspaceRoot}/jest.preset.js"
+      ],
+      "options": {
+        "jestConfig": "rule-engine/jest.config.ts"
+      }
+    }
+  }
 }

@@ -43,8 +43,14 @@
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/backend"],
+      "inputs": [
+        "default",
+        "sharedGlobals",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "options": {
-        "jestConfig": "backend/jest.config.ts"
+        "jestConfig": "backend/jest.config.ts",
+        "passWithNoTests": true
       }
     },
     "execute": {

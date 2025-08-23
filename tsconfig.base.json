@@ -14,12 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "esModuleInterop": true,
     "paths": {
-      "@dungeon-maister/backend": ["apps/backend/src/main.ts"],
-      "@dungeon-maister/data-models": ["libs/data-models/src/index.ts"],
-      "@dungeon-maister/host-app": ["apps/host-app/src/main.tsx"],
-      "@dungeon-maister/mobile-app": ["apps/mobile-app/src/main.tsx"],
-      "@dungeon-maister/rule-engine": ["libs/rule-engine/src/index.ts"]
+      "@dungeon-maister/backend": ["backend/src/main.ts"],
+      "@dungeon-maister/data-models": ["data-models/src/index.ts"],
+      "@dungeon-maister/host-app": ["host-app/src/main.tsx"],
+      "@dungeon-maister/mobile-app": ["mobile-app/src/main.tsx"],
+      "@dungeon-maister/rule-engine": ["rule-engine/src/index.ts"],
+      "@dungeon-maister/llm-orchestrator": ["llm-orchestrator/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
