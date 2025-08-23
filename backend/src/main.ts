@@ -1,34 +1,57 @@
 import express from 'express';
-import { createBaselineCharacter, performSkillCheck } from '@dungeon-maister/rule-engine';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+import { createBaselineCharacter, performSkillCheck, generateMap } from '@dungeon-maister/rule-engine';
+import { askAI } from '@dungeon-maister/llm-orchestrator';
 
-// Create our sample character once when the server starts
+const PORT = 3000;
+const app = express();
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: { origin: "*" }
+});
+
 const playerCharacter = createBaselineCharacter('char-01', 'Boric the Brave');
 
-const app = express();
-const PORT = 3000;
-
-// This middleware is needed to read JSON from requests
 app.use(express.json());
 
-// A new endpoint to handle player commands
-app.post('/command', (req, res) => {
-  const commandText: string = req.body.command || '';
-  console.log(`Received command: "${commandText}"`);
-
-  let responseMessage = "I don't understand that command.";
-
-  // Simple command parser
-  if (commandText.toLowerCase() === 'roll perception') {
-    // A Skill Check is 1d20 + mods vs a DC
-    const success = performSkillCheck(playerCharacter, 'perception', 15);
-    responseMessage = success ? 'You notice something glittering in the corner!' : 'You see nothing out of the ordinary.';
-  }
-
-  res.json({ reply: responseMessage });
+// NEW ENDPOINT for map generation
+app.get('/map', (req, res) => {
+  console.log('[server]: Received request for a new map.');
+  const newMap = generateMap({
+    width: 20,
+    height: 15,
+    maxTunnels: 50,
+    maxLength: 8,
+  });
+  res.json(newMap);
 });
 
 
-app.listen(PORT, () => {
+io.on('connection', (socket) => {
+  console.log(`[socket]: A user connected with id ${socket.id}`);
+  socket.emit('message', { type: 'narrative', content: 'Welcome! You are connected to the Dungeon-mAIster server.' });
+
+  socket.on('command', async (commandText: string) => {
+    console.log(`[socket]: Received command from ${socket.id}: "${commandText}"`);
+    io.emit('message', { type: 'action', content: commandText, author: 'Player' });
+    let responseMessage;
+    if (commandText.toLowerCase() === 'roll perception') {
+      const success = performSkillCheck(playerCharacter, 'perception', 15);
+      const content = `Player rolled perception and ${success ? 'succeeded' : 'failed'}!`;
+      responseMessage = { type: 'narrative', content: content, author: 'Game Master' };
+    } else {
+      const aiContent = await askAI(commandText);
+      responseMessage = { type: 'narrative', content: aiContent, author: 'Game Master' };
+    }
+    io.emit('message', responseMessage);
+  });
+
+  socket.on('disconnect', () => {
+    console.log(`[socket]: User ${socket.id} disconnected`);
+  });
+});
+
+httpServer.listen(PORT, () => {
   console.log(`[server]: Server is running at http://localhost:${PORT}`);
-  console.log('Player character created:', playerCharacter.name);
 });

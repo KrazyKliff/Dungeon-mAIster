@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "backend/src",
+  "sourceRoot": "backend/src/main.ts",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -10,66 +10,23 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "platform": "node",
         "outputPath": "dist/backend",
-        "format": ["cjs"],
-        "bundle": false,
         "main": "backend/src/main.ts",
         "tsConfig": "backend/tsconfig.app.json",
         "assets": ["backend/src/assets"],
         "generatePackageJson": true,
-        "esbuildOptions": {
-          "sourcemap": true,
-          "outExtension": {
-            ".js": ".js"
-          }
-        }
+        "format": ["cjs"]
       },
       "configurations": {
         "development": {},
-        "production": {
-          "esbuildOptions": {
-            "sourcemap": false,
-            "outExtension": {
-              ".js": ".js"
-            }
-          }
-        }
+        "production": {}
       }
-    },
-    "prune-lockfile": {
-      "dependsOn": ["build"],
-      "cache": true,
-      "executor": "@nx/js:prune-lockfile",
-      "outputs": [
-        "{workspaceRoot}/dist/backend/package.json",
-        "{workspaceRoot}/dist/backend/package-lock.json"
-      ],
-      "options": {
-        "buildTarget": "build"
-      }
-    },
-    "copy-workspace-modules": {
-      "dependsOn": ["build"],
-      "cache": true,
-      "outputs": ["{workspaceRoot}/dist/backend/workspace_modules"],
-      "executor": "@nx/js:copy-workspace-modules",
-      "options": {
-        "buildTarget": "build"
-      }
-    },
-    "prune": {
-      "dependsOn": ["prune-lockfile", "copy-workspace-modules"],
-      "executor": "nx:noop"
     },
     "serve": {
-      "continuous": true,
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
       "options": {
-        "buildTarget": "backend:build",
-        "runBuildTargetDependencies": false
+        "buildTarget": "backend:build"
       },
       "configurations": {
         "development": {
@@ -80,9 +37,20 @@
         }
       }
     },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
     "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/backend"],
       "options": {
-        "passWithNoTests": true
+        "jestConfig": "backend/jest.config.ts"
+      }
+    },
+    "execute": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "backend:build"
       }
     }
   }
