@@ -1,28 +1,16 @@
 import { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
-import { NarrativeLog } from './narrative-log';
-import { MapViewer } from './map-viewer';
-import { GameEntity, MapData, GameMessage } from '@dungeon-maister/data-models';
-
-interface GameState {
-  map: MapData;
-  entities: GameEntity[];
-}
+import { GameState } from '@dungeon-maister/data-models';
 
 export function App() {
   const [isConnected, setIsConnected] = useState(false);
-  const [messages, setMessages] = useState<GameMessage[]>([]);
-  const [gameState, setGameState] = useState<GameState>({ map: [], entities: [] });
+  const [gameState, setGameState] = useState<GameState | null>(null);
 
   useEffect(() => {
     const newSocket = io();
     newSocket.on('connect', () => setIsConnected(true));
     newSocket.on('disconnect', () => setIsConnected(false));
     
-    newSocket.on('message', (message: GameMessage) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-
     newSocket.on('gameState', (newGameState: GameState) => {
       setGameState(newGameState);
     });
@@ -31,20 +19,14 @@ export function App() {
   }, []);
 
   return (
-    <div style={{ display: 'flex', height: '100vh', backgroundColor: '#1a1a1a', color: 'white', fontFamily: 'sans-serif' }}>
-      <div style={{ flex: 1, padding: '24px', borderRight: '2px solid #555', overflowY: 'auto' }}>
-        <h1>Journal & Dashboard</h1>
-        <p>Connection Status: {isConnected ? 'Connected' : 'Disconnected'}</p>
-        <hr />
-        <NarrativeLog messages={messages} />
-      </div>
-      <div style={{ flex: 2, padding: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {gameState.map.length > 0 ? (
-          <MapViewer mapData={gameState.map} entities={gameState.entities} />
-        ) : (
-          <p>Waiting for map data from server...</p>
-        )}
-      </div>
+    <div style={{ fontFamily: 'monospace', padding: '24px', color: 'white', backgroundColor: '#1a1a1a', height: '100vh' }}>
+      <h1>Dungeon-mAIster Host (Debug View)</h1>
+      <p>Connection Status: {isConnected ? 'Connected' : 'Disconnected'}</p>
+      <hr />
+      <h2>Raw Game State:</h2>
+      <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
+        {gameState ? JSON.stringify(gameState, null, 2) : 'Waiting for game state...'}
+      </pre>
     </div>
   );
 }

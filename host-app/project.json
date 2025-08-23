@@ -4,19 +4,49 @@
   "sourceRoot": "host-app/src",
   "projectType": "application",
   "tags": [],
-  "// targets": "to see all targets run: nx show project host-app --web",
   "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/host-app"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "host-app:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "host-app:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "host-app:build:production",
+          "hmr": false
+        }
+      }
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/host-app"],
-      "inputs": [
-        "default",
-        "sharedGlobals",
-        "{workspaceRoot}/jest.preset.js"
-      ],
       "options": {
         "jestConfig": "host-app/jest.config.ts"
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }
