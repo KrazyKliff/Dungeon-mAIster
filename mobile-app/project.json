@@ -4,6 +4,55 @@
   "sourceRoot": "mobile-app/src",
   "projectType": "application",
   "tags": [],
-  "// targets": "to see all targets run: nx show project mobile-app --web",
-  "targets": {}
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/mobile-app/web"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "mobile-app:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mobile-app:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "mobile-app:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/mobile-app"],
+      "options": {
+        "jestConfig": "mobile-app/jest.config.ts"
+      }
+    },
+    "run-android": {
+      "executor": "@nx/react-native:run-android"
+    },
+    "run-ios": {
+      "executor": "@nx/react-native:run-ios"
+    }
+  }
 }
