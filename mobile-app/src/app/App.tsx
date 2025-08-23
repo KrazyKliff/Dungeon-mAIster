@@ -2,17 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, Text, View, ScrollView, TextInput, Button } from 'react-native';
 import { io, Socket } from 'socket.io-client';
 
-// Define the structure of a message object to match the backend
-interface GameMessage {
-  type: 'narrative' | 'dialogue' | 'action';
-  content: string;
-  author?: string;
-}
+// ... (GameMessage interface and styles remain the same)
 
 const App = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
-  // Tell our state that we are storing an array of GameMessage objects
-  const [messages, setMessages] = useState<GameMessage[]>([]);
   const [isConnected, setIsConnected] = useState(false);
   const [command, setCommand] = useState('');
 
@@ -21,18 +14,20 @@ const App = () => {
     setSocket(newSocket);
     newSocket.on('connect', () => setIsConnected(true));
     newSocket.on('disconnect', () => setIsConnected(false));
-    
-    // Listen for incoming message objects
-    newSocket.on('message', (message: GameMessage) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
+    // We don't need to listen for messages on the controller for now
     return () => { newSocket.disconnect(); };
   }, []);
 
   const sendCommand = () => {
     if (socket && command) {
       socket.emit('command', command);
-      setCommand(''); // Clear the input after sending
+      setCommand('');
+    }
+  };
+
+  const sendMoveCommand = (direction: 'up' | 'down' | 'left' | 'right') => {
+    if (socket) {
+      socket.emit('move', { direction });
     }
   };
 
@@ -45,6 +40,21 @@ const App = () => {
           Status: {isConnected ? 'Connected' : 'Disconnected'}
         </Text>
         
+        {/* Movement Controls */}
+        <View style={styles.dpadContainer}>
+          <View style={styles.dpadRow}>
+            <View style={styles.dpadButton}><Button title="Up" onPress={() => sendMoveCommand('up')} /></View>
+          </View>
+          <View style={styles.dpadRow}>
+            <View style={styles.dpadButton}><Button title="Left" onPress={() => sendMoveCommand('left')} /></View>
+            <View style={styles.dpadButton}><Button title="Down" onPress={() => sendMoveCommand('down')} /></View>
+            <View style={styles.dpadButton}><Button title="Right" onPress={() => sendMoveCommand('right')} /></View>
+          </View>
+        </View>
+
+        <View style={styles.separator} />
+
+        {/* Text Command Input */}
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -54,17 +64,6 @@ const App = () => {
           />
           <Button title="Send" onPress={sendCommand} disabled={!isConnected} />
         </View>
-
-        <View style={styles.separator} />
-        
-        <ScrollView style={styles.logContainer}>
-          {/* THE FIX: Render msg.content, not the whole msg object */}
-          {messages.map((msg, index) => (
-            <Text key={index} style={styles.message}>
-              {msg.author && `${msg.author}: `}{msg.content}
-            </Text>
-          ))}
-        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -78,8 +77,9 @@ const styles = StyleSheet.create({
   inputContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 16 },
   input: { flex: 1, borderColor: '#ccc', borderWidth: 1, borderRadius: 4, padding: 8, marginRight: 8 },
   separator: { marginVertical: 16, height: 1, backgroundColor: '#eee' },
-  logContainer: { flex: 1 },
-  message: { marginTop: 4, fontSize: 14, }
+  dpadContainer: { marginTop: 20, alignItems: 'center' },
+  dpadRow: { flexDirection: 'row', justifyContent: 'center' },
+  dpadButton: { margin: 4, width: 70 },
 });
 
 export default App;

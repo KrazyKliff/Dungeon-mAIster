@@ -1,32 +1,20 @@
-import { useState, useEffect, useCallback } from 'react';
-import { io, Socket } from 'socket.io-client';
-import { NarrativeLog, GameMessage } from './narrative-log';
+import { useState, useEffect } from 'react';
+import { io } from 'socket.io-client';
+import { NarrativeLog } from './narrative-log';
 import { MapViewer } from './map-viewer';
+import { GameEntity, MapData, GameMessage } from '@dungeon-maister/data-models';
 
-// Define the MapData type to be used by both the app and the component
-type MapData = number[][];
+interface GameState {
+  map: MapData;
+  entities: GameEntity[];
+}
 
 export function App() {
   const [isConnected, setIsConnected] = useState(false);
   const [messages, setMessages] = useState<GameMessage[]>([]);
-  const [mapData, setMapData] = useState<MapData>([]);
-
-  // Function to fetch a new map from the backend
-  const fetchNewMap = useCallback(async () => {
-    try {
-      // We use the Vite proxy for the fetch call as well
-      const response = await fetch('/map'); 
-      const newMap = await response.json();
-      setMapData(newMap);
-    } catch (error) {
-      console.error("Failed to fetch map:", error);
-    }
-  }, []);
+  const [gameState, setGameState] = useState<GameState>({ map: [], entities: [] });
 
   useEffect(() => {
-    // Fetch the initial map when the component mounts
-    fetchNewMap();
-
     const newSocket = io();
     newSocket.on('connect', () => setIsConnected(true));
     newSocket.on('disconnect', () => setIsConnected(false));
@@ -34,9 +22,13 @@ export function App() {
     newSocket.on('message', (message: GameMessage) => {
       setMessages((prevMessages) => [...prevMessages, message]);
     });
+
+    newSocket.on('gameState', (newGameState: GameState) => {
+      setGameState(newGameState);
+    });
     
     return () => { newSocket.disconnect(); };
-  }, [fetchNewMap]);
+  }, []);
 
   return (
     <div style={{ display: 'flex', height: '100vh', backgroundColor: '#1a1a1a', color: 'white', fontFamily: 'sans-serif' }}>
@@ -46,11 +38,12 @@ export function App() {
         <hr />
         <NarrativeLog messages={messages} />
       </div>
-      <div style={{ flex: 2, padding: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-        <MapViewer mapData={mapData} />
-        <button onClick={fetchNewMap} style={{ marginTop: '20px', padding: '10px 20px', fontSize: '16px' }}>
-          Generate New Map
-        </button>
+      <div style={{ flex: 2, padding: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {gameState.map.length > 0 ? (
+          <MapViewer mapData={gameState.map} entities={gameState.entities} />
+        ) : (
+          <p>Waiting for map data from server...</p>
+        )}
       </div>
     </div>
   );

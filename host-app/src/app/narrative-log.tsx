@@ -1,11 +1,5 @@
 import React from 'react';
-
-// Define the structure of a message object
-export interface GameMessage {
-  type: 'narrative' | 'dialogue' | 'action';
-  content: string;
-  author?: string;
-}
+import { GameMessage } from '@dungeon-maister/data-models';
 
 interface NarrativeLogProps {
   messages: GameMessage[];

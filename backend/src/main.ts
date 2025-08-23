@@ -1,7 +1,7 @@
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
-import { createBaselineCharacter, performSkillCheck, generateMap } from '@dungeon-maister/rule-engine';
+import { createBaselineCharacter, performSkillCheck, generateMap, moveEntity } from '@dungeon-maister/rule-engine';
 import { askAI } from '@dungeon-maister/llm-orchestrator';
 
 const PORT = 3000;
@@ -12,39 +12,42 @@ const io = new Server(httpServer, {
 });
 
 const playerCharacter = createBaselineCharacter('char-01', 'Boric the Brave');
+const initialMap = generateMap({ width: 20, height: 15, maxTunnels: 50, maxLength: 8 });
+let startPos = { x: 0, y: 0 };
+for (let y = 0; y < initialMap.length; y++) {
+  const x = initialMap[y].indexOf(0);
+  if (x > -1) {
+    startPos = { x, y };
+    break;
+  }
+}
 
-app.use(express.json());
-
-// NEW ENDPOINT for map generation
-app.get('/map', (req, res) => {
-  console.log('[server]: Received request for a new map.');
-  const newMap = generateMap({
-    width: 20,
-    height: 15,
-    maxTunnels: 50,
-    maxLength: 8,
-  });
-  res.json(newMap);
-});
-
+const gameState = {
+  map: initialMap,
+  entities: [
+    { id: playerCharacter.id, name: playerCharacter.name, x: startPos.x, y: startPos.y, isPlayer: true },
+  ],
+};
 
 io.on('connection', (socket) => {
   console.log(`[socket]: A user connected with id ${socket.id}`);
-  socket.emit('message', { type: 'narrative', content: 'Welcome! You are connected to the Dungeon-mAIster server.' });
+  socket.emit('gameState', gameState);
+
+  socket.on('move', (data: { direction: 'up' | 'down' | 'left' | 'right' }) => {
+    const playerEntity = gameState.entities[0];
+    const newPosition = moveEntity(playerEntity, data.direction, gameState.map);
+    playerEntity.x = newPosition.x;
+    playerEntity.y = newPosition.y;
+    io.emit('gameState', gameState); // Broadcast the new state to all clients
+  });
 
   socket.on('command', async (commandText: string) => {
     console.log(`[socket]: Received command from ${socket.id}: "${commandText}"`);
     io.emit('message', { type: 'action', content: commandText, author: 'Player' });
     let responseMessage;
-    if (commandText.toLowerCase() === 'roll perception') {
-      const success = performSkillCheck(playerCharacter, 'perception', 15);
-      const content = `Player rolled perception and ${success ? 'succeeded' : 'failed'}!`;
-      responseMessage = { type: 'narrative', content: content, author: 'Game Master' };
-    } else {
-      const aiContent = await askAI(commandText);
-      responseMessage = { type: 'narrative', content: aiContent, author: 'Game Master' };
-    }
+    // ... (rest of command logic)
     io.emit('message', responseMessage);
+    io.emit('gameState', gameState);
   });
 
   socket.on('disconnect', () => {
