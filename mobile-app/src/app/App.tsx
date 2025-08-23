@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, Text, View, ScrollView, TextInput, Button } from 'react-native';
 import { io, Socket } from 'socket.io-client';
-
-// ... (GameMessage interface and styles remain the same)
+import { GameMessage } from '@dungeon-maister/data-models';
 
 const App = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
+  const [messages, setMessages] = useState<GameMessage[]>([]);
   const [isConnected, setIsConnected] = useState(false);
   const [command, setCommand] = useState('');
 
@@ -14,7 +14,9 @@ const App = () => {
     setSocket(newSocket);
     newSocket.on('connect', () => setIsConnected(true));
     newSocket.on('disconnect', () => setIsConnected(false));
-    // We don't need to listen for messages on the controller for now
+    newSocket.on('message', (message: GameMessage) => {
+      setMessages((prevMessages) => [message, ...prevMessages]);
+    });
     return () => { newSocket.disconnect(); };
   }, []);
 
@@ -39,8 +41,6 @@ const App = () => {
         <Text style={styles.status}>
           Status: {isConnected ? 'Connected' : 'Disconnected'}
         </Text>
-        
-        {/* Movement Controls */}
         <View style={styles.dpadContainer}>
           <View style={styles.dpadRow}>
             <View style={styles.dpadButton}><Button title="Up" onPress={() => sendMoveCommand('up')} /></View>
@@ -51,10 +51,7 @@ const App = () => {
             <View style={styles.dpadButton}><Button title="Right" onPress={() => sendMoveCommand('right')} /></View>
           </View>
         </View>
-
         <View style={styles.separator} />
-
-        {/* Text Command Input */}
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -64,22 +61,31 @@ const App = () => {
           />
           <Button title="Send" onPress={sendCommand} disabled={!isConnected} />
         </View>
+        <ScrollView style={styles.logContainer}>
+          {messages.map((msg, index) => (
+            <Text key={index} style={styles.message}>
+              <Text style={{fontWeight: 'bold'}}>{msg.author || 'GM'}: </Text>{msg.content}
+            </Text>
+          ))}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1 },
+  safeArea: { flex: 1, backgroundColor: '#f0f0f0' },
   container: { flex: 1, padding: 16 },
   title: { fontSize: 24, fontWeight: '600', textAlign: 'center' },
   status: { fontSize: 16, textAlign: 'center', marginVertical: 8, color: '#666' },
-  inputContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 16 },
-  input: { flex: 1, borderColor: '#ccc', borderWidth: 1, borderRadius: 4, padding: 8, marginRight: 8 },
-  separator: { marginVertical: 16, height: 1, backgroundColor: '#eee' },
-  dpadContainer: { marginTop: 20, alignItems: 'center' },
+  inputContainer: { flexDirection: 'row', alignItems: 'center', marginBottom: 16 },
+  input: { flex: 1, backgroundColor: 'white', borderColor: '#ccc', borderWidth: 1, borderRadius: 4, padding: 8, marginRight: 8 },
+  separator: { marginVertical: 16, height: 1, backgroundColor: '#ddd' },
+  dpadContainer: { alignItems: 'center' },
   dpadRow: { flexDirection: 'row', justifyContent: 'center' },
   dpadButton: { margin: 4, width: 70 },
+  logContainer: { flex: 1, backgroundColor: 'white', borderRadius: 4, padding: 8, borderWidth: 1, borderColor: '#ddd' },
+  message: { marginTop: 4, fontSize: 14, }
 });
 
 export default App;
