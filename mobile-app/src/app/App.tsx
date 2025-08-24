@@ -11,13 +11,17 @@ const App = () => {
   const myCharacterId = 'char-01';
 
   useEffect(() => {
+    // THIS IS THE FIX: Use 10.0.2.2 to connect from the Android emulator
     const newSocket = io('http://10.0.2.2:3000');
     setSocket(newSocket);
+
     newSocket.on('connect', () => setIsConnected(true));
     newSocket.on('disconnect', () => setIsConnected(false));
+    
     newSocket.on('gameState', (newGameState: GameState) => {
       setGameState(newGameState);
     });
+
     return () => { newSocket.disconnect(); };
   }, []);
 
@@ -35,8 +39,7 @@ const App = () => {
   }
 
   const myCharacter = gameState.characters[myCharacterId];
-  const selectedEntity = gameState.entities.find(e => e.id === gameState.selectedEntityId);
-
+  
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar />
@@ -46,13 +49,7 @@ const App = () => {
           <Text style={styles.status}>
             Status: {isConnected ? 'Connected' : 'Disconnected'}
           </Text>
-          
-          {selectedEntity && (
-            <Text style={styles.selectedText}>Selected: {selectedEntity.name}</Text>
-          )}
-
           <CharacterSheet character={myCharacter} />
-          
           <View style={styles.dpadContainer}>
             <View style={styles.dpadRow}><Button title="Up" onPress={() => sendMoveCommand('up')} /></View>
             <View style={styles.dpadRow}>
@@ -67,12 +64,12 @@ const App = () => {
   );
 };
 
+// Styles remain the same
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#f0f0f0' },
   container: { flex: 1, padding: 16 },
   title: { fontSize: 24, fontWeight: '600', textAlign: 'center' },
   status: { fontSize: 16, textAlign: 'center', marginVertical: 8, color: '#666' },
-  selectedText: { textAlign: 'center', fontSize: 18, fontWeight: 'bold', color: 'blue', marginBottom: 10 },
   dpadContainer: { marginTop: 20, alignItems: 'center' },
   dpadRow: { flexDirection: 'row', justifyContent: 'center' },
   dpadButton: { margin: 4, width: 70 },
