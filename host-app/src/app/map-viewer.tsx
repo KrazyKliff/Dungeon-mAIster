@@ -1,9 +1,10 @@
 import React from 'react';
-import { GameEntity, MapData } from '@dungeon-maister/data-models';
+import { GameEntity, MapData, MapProp } from '@dungeon-maister/data-models';
 
 interface MapViewerProps {
   mapData: MapData;
   entities: GameEntity[];
+  props: MapProp[]; // <-- THIS IS THE FIX
   selectedEntityId: string | null;
   onEntityClick: (entityId: string) => void;
 }
@@ -26,10 +27,11 @@ const entityTokenStyle: React.CSSProperties = {
   transition: 'top 0.3s linear, left 0.3s linear',
 };
 
-export const MapViewer: React.FC<MapViewerProps> = ({ mapData, entities, selectedEntityId, onEntityClick }) => {
+export const MapViewer: React.FC<MapViewerProps> = ({ mapData, entities, props, selectedEntityId, onEntityClick }) => {
   return (
     <div style={{ border: '1px solid #555', padding: '10px' }}>
       <div style={{ display: 'inline-block', backgroundColor: '#000', position: 'relative' }}>
+        {/* Render Map Tiles */}
         {mapData.map((row, y) => (
           <div key={y} style={{ display: 'flex' }}>
             {row.map((tile, x) => (
@@ -43,6 +45,21 @@ export const MapViewer: React.FC<MapViewerProps> = ({ mapData, entities, selecte
             ))}
           </div>
         ))}
+        {/* Render Props */}
+        {props.map((prop, index) => (
+          <div key={`prop-${index}`} style={{
+            position: 'absolute',
+            top: prop.y * TILE_SIZE,
+            left: prop.x * TILE_SIZE,
+            width: TILE_SIZE,
+            height: TILE_SIZE,
+            textAlign: 'center',
+            fontSize: '24px',
+          }}>
+            ??
+          </div>
+        ))}
+        {/* Render Entities */}
         {entities.map((entity) => (
           <div
             key={entity.id}
