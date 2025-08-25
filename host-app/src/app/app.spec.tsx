@@ -18,8 +18,6 @@ describe('App', () => {
         <App />
       </BrowserRouter>
     );
-    // FIX: The test was looking for the wrong title.
-    // We're updating it to match the actual rendered title.
     expect(getByText(/Journal & Dashboard/gi)).toBeTruthy();
   });
 });
