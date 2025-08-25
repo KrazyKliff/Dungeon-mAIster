@@ -22,5 +22,5 @@ export interface Character {
   movementSpeed: number;
 
   // Inventory (to be defined in more detail later)
-  inventory: any[];
+  inventory: unknown[];
 }

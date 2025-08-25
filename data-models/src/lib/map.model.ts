@@ -1,5 +1,5 @@
 import { Character } from './character.model';
-import { GameMessage } from './message.model';
+
 export type MapData = number[][];
 export interface MapProp { name: string; x: number; y: number; }
 export interface GameEntity { id: string; name: string; x: number; y: number; isPlayer: boolean; }

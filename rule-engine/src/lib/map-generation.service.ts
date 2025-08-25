@@ -1,5 +1,5 @@
 import { askAI } from '@dungeon-maister/llm-orchestrator';
-import { MapData, MapProp, MapParameters, MapConfig } from '@dungeon-maister/data-models';
+import { MapData, MapProp, MapParameters} from '@dungeon-maister/data-models';
 
 function extractJsonFromString(text: string): string | null {
   const jsonObjStart = text.indexOf('{');
@@ -56,3 +56,4 @@ export function generateMap(width: number, height: number, params: MapParameters
   console.log('[MapGen]: Deterministically placed props:', props);
   return { map, props };
 }
+

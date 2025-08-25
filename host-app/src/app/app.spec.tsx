@@ -18,6 +18,6 @@ describe('App', () => {
         <App />
       </BrowserRouter>
     );
-    expect(getByText(/Journal & Dashboard/gi)).toBeTruthy();
+    expect(getByText('Journal & Dashboard')).toBeTruthy();
   });
 });

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, Text, View, ScrollView, TextInput, Button, ActivityIndicator } from 'react-native';
 import { io, Socket } from 'socket.io-client';
-import { GameState, GameMessage, Character } from '@dungeon-maister/data-models';
+import { GameState, GameMessage} from '@dungeon-maister/data-models';
 import { CharacterSheet } from './character-sheet';
 
 const App = () => {
@@ -101,3 +101,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+

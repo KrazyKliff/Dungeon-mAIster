@@ -1,6 +1,5 @@
 import {
   Character,
-  SubAttributeName,
   PrimaryAttributeName,
 } from '@dungeon-maister/data-models';
 
@@ -57,3 +56,4 @@ export function createBaselineCharacter(id: string, name: string): Character {
 
   return baselineCharacter;
 }
+
