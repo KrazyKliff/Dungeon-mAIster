@@ -8,5 +8,5 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../coverage/host-app',
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jsdom', // <--- FIX
 };

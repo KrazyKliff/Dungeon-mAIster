@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
   displayName: 'mobile-app',
-  preset: '../jest.preset.js',
+  preset: '../jest.preset.js', // <--- FIX
   testRunner: 'jest-circus/runner',
   transform: {
     '^.+\\.[tj]sx?$': [
@@ -12,5 +12,5 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: './coverage/mobile-app',
+  coverageDirectory: '../coverage/mobile-app',
 };
