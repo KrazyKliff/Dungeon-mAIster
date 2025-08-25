@@ -8,23 +8,27 @@ const App = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [gameState, setGameState] = useState<GameState | null>(null);
+  const [messages, setMessages] = useState<GameMessage[]>([]);
+  const [command, setCommand] = useState('');
   const myCharacterId = 'char-01';
 
   useEffect(() => {
-    // THIS IS THE FIX: Use 10.0.2.2 to connect from the Android emulator
     const newSocket = io('http://10.0.2.2:3000');
     setSocket(newSocket);
-
     newSocket.on('connect', () => setIsConnected(true));
     newSocket.on('disconnect', () => setIsConnected(false));
-    
     newSocket.on('gameState', (newGameState: GameState) => {
       setGameState(newGameState);
     });
-
+    newSocket.on('message', (message: GameMessage) => {
+      setMessages((prevMessages) => [message, ...prevMessages]);
+    });
     return () => { newSocket.disconnect(); };
   }, []);
 
+  const sendCommand = () => {
+    if (socket && command) { socket.emit('command', command); setCommand(''); }
+  };
   const sendMoveCommand = (direction: 'up' | 'down' | 'left' | 'right') => {
     if (socket) { socket.emit('move', { direction }); }
   };
@@ -39,7 +43,7 @@ const App = () => {
   }
 
   const myCharacter = gameState.characters[myCharacterId];
-  
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar />
@@ -58,21 +62,42 @@ const App = () => {
               <View style={styles.dpadButton}><Button title="Right" onPress={() => sendMoveCommand('right')} /></View>
             </View>
           </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              value={command}
+              onChangeText={setCommand}
+              placeholder="Enter your action..."
+            />
+            <Button title="Send" onPress={sendCommand} disabled={!isConnected} />
+          </View>
+          <View style={styles.separator} />
+          <ScrollView style={styles.logContainer}>
+            {messages.map((msg, index) => (
+              <Text key={index} style={styles.message}>
+                <Text style={{fontWeight: 'bold'}}>{msg.author || 'GM'}: </Text>{msg.content}
+              </Text>
+            ))}
+          </ScrollView>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-// Styles remain the same
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#f0f0f0' },
   container: { flex: 1, padding: 16 },
   title: { fontSize: 24, fontWeight: '600', textAlign: 'center' },
   status: { fontSize: 16, textAlign: 'center', marginVertical: 8, color: '#666' },
+  inputContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 16 },
+  input: { flex: 1, backgroundColor: 'white', borderColor: '#ccc', borderWidth: 1, borderRadius: 4, padding: 8, marginRight: 8 },
+  separator: { marginVertical: 16, height: 1, backgroundColor: '#ddd' },
   dpadContainer: { marginTop: 20, alignItems: 'center' },
   dpadRow: { flexDirection: 'row', justifyContent: 'center' },
   dpadButton: { margin: 4, width: 70 },
+  logContainer: { flex: 1, height: 150, backgroundColor: 'white', borderRadius: 4, padding: 8, borderWidth: 1, borderColor: '#ddd' },
+  message: { marginTop: 4, fontSize: 14, }
 });
 
 export default App;

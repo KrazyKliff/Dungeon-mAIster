@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "backend/src/main.ts",
+  "sourceRoot": "backend/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -43,20 +43,8 @@
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/backend"],
-      "inputs": [
-        "default",
-        "sharedGlobals",
-        "{workspaceRoot}/jest.preset.js"
-      ],
       "options": {
-        "jestConfig": "backend/jest.config.ts",
-        "passWithNoTests": true
-      }
-    },
-    "execute": {
-      "executor": "@nx/js:node",
-      "options": {
-        "buildTarget": "backend:build"
+        "jestConfig": "backend/jest.config.ts"
       }
     }
   }

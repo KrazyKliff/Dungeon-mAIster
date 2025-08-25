@@ -1,31 +1,63 @@
 import { useState, useEffect } from 'react';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import { NarrativeLog } from './narrative-log';
-import { GameMessage } from '@dungeon-maister/data-models';
+import { MapViewer } from './map-viewer';
+import { GameState, GameMessage } from '@dungeon-maister/data-models';
+import { AIDebugViewer } from './ai-debug-viewer';
 
 export function App() {
+  const [socket, setSocket] = useState<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [messages, setMessages] = useState<GameMessage[]>([]);
+  const [gameState, setGameState] = useState<GameState>({ map: [], entities: [], characters: {}, selectedEntityId: null, props:[] });
+  const [isDebuggerVisible, setIsDebuggerVisible] = useState(false);
+  const [lastAIResponse, setLastAIResponse] = useState(null);
 
   useEffect(() => {
     const newSocket = io();
+    setSocket(newSocket);
     newSocket.on('connect', () => setIsConnected(true));
     newSocket.on('disconnect', () => setIsConnected(false));
+    newSocket.on('message', (message: GameMessage) => setMessages((prev) => [message, ...prev]));
+    newSocket.on('gameState', (newGameState: GameState) => setGameState(newGameState));
+    newSocket.on('ai_debug', (data) => setLastAIResponse(data));
     
-    // Listen for incoming message objects
-    newSocket.on('message', (message: GameMessage) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-    
-    return () => { newSocket.disconnect(); };
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === '`') { setIsDebuggerVisible(prev => !prev); }
+    };
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      newSocket.disconnect();
+      window.removeEventListener('keydown', handleKeyPress);
+    };
   }, []);
 
+  const handleSelectEntity = (entityId: string) => {
+    const newSelectedId = gameState.selectedEntityId === entityId ? null : entityId;
+    socket?.emit('selectEntity', { entityId: newSelectedId });
+  };
+
   return (
-    <div style={{ fontFamily: 'sans-serif', padding: '24px', color: 'white', backgroundColor: '#1a1a1a', height: '100vh', overflowY: 'auto' }}>
-      <h1>Dungeon-mAIster Host</h1>
-      <p>Connection Status: {isConnected ? 'Connected' : 'Disconnected'}</p>
-      <hr />
-      <NarrativeLog messages={messages} />
+    <div style={{ display: 'flex', height: '100vh', backgroundColor: '#1a1a1a', color: 'white', fontFamily: 'sans-serif' }}>
+      <div style={{ flex: 1, padding: '24px', borderRight: '2px solid #555', overflowY: 'auto' }}>
+        <h1>Journal & Dashboard</h1>
+        <p>Connection Status: {isConnected ? 'Connected' : 'Disconnected'}</p>
+        <hr />
+        <NarrativeLog messages={messages} />
+      </div>
+      <div style={{ flex: 2, padding: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {gameState.map.length > 0 ? (
+          <MapViewer
+            mapData={gameState.map}
+            entities={gameState.entities}
+            props={gameState.props}
+            selectedEntityId={gameState.selectedEntityId}
+            onEntityClick={handleSelectEntity}
+          />
+        ) : ( <p>Waiting for map data from server...</p> )}
+      </div>
+      {isDebuggerVisible && <AIDebugViewer lastResponse={lastAIResponse} onClose={() => setIsDebuggerVisible(false)} />}
     </div>
   );
 }

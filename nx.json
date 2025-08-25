@@ -13,9 +13,7 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
-    "sharedGlobals": [
-      "{workspaceRoot}/.gitlab-ci.yml"
-    ]
+    "sharedGlobals": ["{workspaceRoot}/.gitlab-ci.yml"]
   },
   "plugins": [
     {
@@ -28,7 +26,22 @@
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
+      },
+      "exclude": ["backend-e2e/**/*"]
+    },
+    {
+      "plugin": "@nx/docker",
+      "options": {
+        "buildTarget": "docker:build",
+        "runTarget": "docker:run"
       }
     }
-  ]
+  ],
+  "targetDefaults": {
+    "@nx/esbuild:esbuild": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    }
+  }
 }

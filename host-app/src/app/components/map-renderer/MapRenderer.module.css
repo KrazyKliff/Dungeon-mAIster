@@ -1,0 +1,52 @@
+.mapContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  width: 90vh; /* Responsive based on viewport height */
+  height: 90vh;
+  border: 1px solid #444;
+}
+
+.tile {
+  position: relative; /* Needed for prop positioning */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  font-size: 1.2rem;
+}
+
+.floor {
+  background-color: #3a3a3a;
+  color: #666;
+}
+
+.wall {
+  background-color: #666;
+}
+
+/* --- NEW PROP STYLES --- */
+.prop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #cda34f; /* A nice gold/yellow for props */
+  font-weight: bold;
+  z-index: 10;
+  cursor: help; /* So users can hover to see the prop name */
+}
+/* --- END OF NEW STYLES --- */
