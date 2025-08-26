@@ -5,6 +5,16 @@ import { MapViewer } from './map-viewer';
 import { GameState, GameMessage } from '@dungeon-maister/data-models';
 import { AIDebugViewer } from './ai-debug-viewer';
 import { CharacterCreationWizard } from './components/character-creation/CharacterCreationWizard';
+import {
+  GmScreenContainer,
+  HostLayoutRoot,
+  LeftPanel,
+  RightPanel,
+  TechnicalLogContainer,
+} from './layout/HostLayout';
+import { TechnicalLog } from './components/TechnicalLog';
+import { MenuBar } from './components/MenuBar';
+import { InfoBar } from './components/InfoBar';
 
 export function App() {
   const [socket, setSocket] = useState<Socket | null>(null);
@@ -15,21 +25,23 @@ export function App() {
   const [lastAIResponse, setLastAIResponse] = useState(null);
 
   useEffect(() => {
-    // The backend now expects the client to initiate character creation.
-    // We will not send a default gameState until creation is complete.
-    const newSocket = io('http://localhost:3000'); // Explicitly connect
+    const newSocket = io('http://localhost:3000');
     setSocket(newSocket);
     newSocket.on('connect', () => setIsConnected(true));
     newSocket.on('disconnect', () => setIsConnected(false));
-    newSocket.on('message', (message: GameMessage) => setMessages((prev) => [message, ...prev]));
+    newSocket.on('message', (message: GameMessage) =>
+      setMessages((prev) => [message, ...prev])
+    );
     newSocket.on('gameState', (newGameState: GameState) => {
       console.log('Received new game state:', newGameState);
       setGameState(newGameState);
     });
     newSocket.on('ai_debug', (data) => setLastAIResponse(data));
-    
+
     const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.key === '`') { setIsDebuggerVisible(prev => !prev); }
+      if (event.key === '`') {
+        setIsDebuggerVisible((prev) => !prev);
+      }
     };
     window.addEventListener('keydown', handleKeyPress);
 
@@ -40,33 +52,48 @@ export function App() {
   }, []);
 
   const handleSelectEntity = (entityId: string) => {
-    const newSelectedId = gameState.selectedEntityId === entityId ? null : entityId;
+    if (!gameState) return;
+    const newSelectedId =
+      gameState.selectedEntityId === entityId ? null : entityId;
     socket?.emit('selectEntity', { entityId: newSelectedId });
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', backgroundColor: '#1a1a1a', color: 'white', fontFamily: 'sans-serif' }}>
-      <div style={{ flex: 1, padding: '24px', borderRight: '2px solid #555', overflowY: 'auto' }}>
-        <h1>Journal & Dashboard</h1>
-        <p>Connection Status: {isConnected ? 'Connected' : 'Disconnected'}</p>
-        <hr />
-        <NarrativeLog messages={messages} />
-      </div>
-      <div style={{ flex: 2, padding: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {gameState && gameState.map.length > 0 ? (
-          <MapViewer
-            mapData={gameState.map}
-            entities={gameState.entities}
-            props={gameState.props}
-            selectedEntityId={gameState.selectedEntityId}
-            onEntityClick={handleSelectEntity}
-          />
-        ) : (
-          socket && <CharacterCreationWizard socket={socket} />
-        )}
-      </div>
-      {isDebuggerVisible && <AIDebugViewer lastResponse={lastAIResponse} onClose={() => setIsDebuggerVisible(false)} />}
-    </div>
+    <HostLayoutRoot>
+      <LeftPanel>
+        <GmScreenContainer>
+          <NarrativeLog messages={messages} />
+        </GmScreenContainer>
+        <TechnicalLogContainer>
+          <TechnicalLog />
+        </TechnicalLogContainer>
+      </LeftPanel>
+      <RightPanel>
+        <div style={{ flexShrink: 0 }}>
+          <MenuBar />
+          <InfoBar />
+        </div>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '16px' }}>
+          {gameState && gameState.map.length > 0 ? (
+            <MapViewer
+              mapData={gameState.map}
+              entities={gameState.entities}
+              props={gameState.props}
+              selectedEntityId={gameState.selectedEntityId}
+              onEntityClick={handleSelectEntity}
+            />
+          ) : (
+            socket && <CharacterCreationWizard socket={socket} />
+          )}
+        </div>
+      </RightPanel>
+      {isDebuggerVisible && (
+        <AIDebugViewer
+          lastResponse={lastAIResponse}
+          onClose={() => setIsDebuggerVisible(false)}
+        />
+      )}
+    </HostLayoutRoot>
   );
 }
 export default App;

@@ -21,7 +21,8 @@
       "@dungeon-maister/host-app": ["host-app/src/main.tsx"],
       "@dungeon-maister/llm-orchestrator": ["llm-orchestrator/src/index.ts"],
       "@dungeon-maister/mobile-app": ["mobile-app/src/main.tsx"],
-      "@dungeon-maister/rule-engine": ["rule-engine/src/index.ts"]
+      "@dungeon-maister/rule-engine": ["rule-engine/src/index.ts"],
+      "@dungeon-maister/ui-shared": ["ui-shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
