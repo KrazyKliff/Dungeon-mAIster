@@ -1,4 +1,5 @@
-import { Character, Kingdom, Origin, Career, Devotion, SpeciesFeature, LifeEvent, BirthSign } from './';
+import { Kingdom, Origin, Career, Devotion, SpeciesFeature, LifeEvent, BirthSign } from './character-creation.model';
+import { Character } from './character.model';
 
 // --- Event Names ---
 export const CC_EVENT_START = '[Character Creation] Start';

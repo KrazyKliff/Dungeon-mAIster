@@ -19,8 +19,9 @@
     "@nx/nest": "^21.4.1",
     "@nx/node": "21.4.1",
     "@nx/playwright": "21.4.0",
-    "@nx/react": "^21.4.0",
+    "@nx/react": "21.4.1",
     "@nx/react-native": "^21.4.0",
+    "@nx/rollup": "21.4.1",
     "@nx/vite": "21.4.0",
     "@nx/web": "21.4.0",
     "@nx/workspace": "21.4.0",
@@ -30,6 +31,8 @@
     "@react-native-community/cli-platform-ios": "~18.0.0",
     "@react-native/babel-preset": "~0.79.3",
     "@react-native/metro-config": "~0.79.3",
+    "@rollup/plugin-url": "^8.0.2",
+    "@svgr/rollup": "^8.1.0",
     "@swc-node/register": "~1.9.1",
     "@swc/cli": "~0.6.0",
     "@swc/core": "~1.5.7",
@@ -44,6 +47,7 @@
     "@vitejs/plugin-react": "^4.2.0",
     "@vitest/ui": "^3.0.0",
     "babel-jest": "^30.0.2",
+    "core-js": "^3.36.1",
     "esbuild": "^0.19.2",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
@@ -66,11 +70,13 @@
     "react-native-svg-transformer": "~1.5.1",
     "react-native-svg-web": "~1.0.9",
     "react-native-web": "~0.20.0",
+    "rollup": "^4.14.0",
     "ts-jest": "^29.4.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.8.2",
     "typescript-eslint": "^8.29.0",
+    "verdaccio": "^6.0.5",
     "vite": "^6.0.0",
     "vitest": "^3.0.0"
   },
@@ -85,5 +91,8 @@
     "react-router-dom": "6.29.0",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1"
+  },
+  "nx": {
+    "includedScripts": []
   }
 }

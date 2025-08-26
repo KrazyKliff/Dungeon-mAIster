@@ -35,5 +35,6 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    base: './',
   },
 });
