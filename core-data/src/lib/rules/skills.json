@@ -1,0 +1,385 @@
+[
+  {
+    "id": "athletics",
+    "name": "Athletics",
+    "description": "Covers climbing, jumping, swimming, and raw physical feats.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Brute Force"
+  },
+  {
+    "id": "acrobatics",
+    "name": "Acrobatics",
+    "description": "Tumbling, balancing, and feats of bodily coordination.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Reflexes",
+    "combatActions": [
+      { "name": "Tumble", "description": "move through an enemy's threatened area without provoking an attack of opportunity" },
+      { "name": "Kip-Up", "description": "stand up from a prone position as a free action" }
+    ]
+  },
+  {
+    "id": "heavy_weapons",
+    "name": "Heavy Weapons",
+    "description": "Proficiency with large, two-handed weapons like greatswords, mauls, and greataxes.",
+    "category": "Weapon",
+    "tier": 1,
+    "governingSubAttribute": "Brute Force",
+    "combatActions": [
+        { "name": "Cleave", "description": "after felling an opponent, you may immediately make an attack against another adjacent opponent" }
+    ]
+  },
+  {
+    "id": "light_blades",
+    "name": "Light Blades",
+    "description": "Precision fighting with daggers, shortswords, and rapiers.",
+    "category": "Weapon",
+    "tier": 1,
+    "governingSubAttribute": "Dexterity",
+    "combatActions": [
+        { "name": "Precise Strike", "description": "you can target a specific weak point to ignore a portion of the enemy's armor" }
+    ]
+  },
+  {
+    "id": "overwhelm",
+    "name": "Overwhelm",
+    "description": "The art of breaking guards and shattering defenses with pure force.",
+    "category": "Martial Technique",
+    "tier": 3,
+    "governingSubAttribute": "Brute Force",
+    "combatActions": [
+        { "name": "Sunder", "description": "you can make attacks that specifically target and reduce the effectiveness of an opponent's armor or shield" }
+    ]
+  },
+  {
+    "id": "clairvoyance",
+    "name": "Clairvoyance",
+    "description": "The discipline of perceiving events and locations beyond your physical senses.",
+    "category": "Psionic Discipline",
+    "tier": 3,
+    "governingSubAttribute": "Intuition",
+    "combatActions": [
+        { "name": "Third Eye", "description": "you can see invisible creatures and objects" }
+    ]
+  },
+  {
+    "id": "academics",
+    "name": "Academics",
+    "description": "Knowledge of historical events, scientific principles, and cultural studies.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Knowledge"
+  },
+  {
+    "id": "bearing",
+    "name": "Bearing",
+    "description": "Carrying yourself with confidence and establishing natural authority.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Charm",
+    "combatActions": [
+      { "name": "Hold Gaze", "description": "Make a Bearing check to stare down a non-hostile creature, preventing it from approaching." }
+    ]
+  },
+  {
+    "id": "breathing_control",
+    "name": "Breathing Control",
+    "description": "The ability to hold your breath for extended periods and regulate oxygen intake.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Constitution"
+  },
+  {
+    "id": "concentration",
+    "name": "Concentration",
+    "description": "Maintaining focus on a task, spell, or ability despite distractions.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Willpower"
+  },
+  {
+    "id": "discipline",
+    "name": "Discipline",
+    "description": "Resisting mental and emotional influence through sheer force of will.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Willpower"
+  },
+  {
+    "id": "dodge",
+    "name": "Dodge",
+    "description": "The ability to evade attacks through quick movements and reflexes.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Reflexes"
+  },
+  {
+    "id": "etiquette",
+    "name": "Etiquette",
+    "description": "Knowing and applying correct social graces in various cultural contexts.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Charm",
+    "combatActions": [
+      { "name": "De-escalate", "description": "Make an Etiquette check to attempt to talk down a hostile but intelligent creature before combat begins." }
+    ]
+  },
+  {
+    "id": "fortitude",
+    "name": "Fortitude",
+    "description": "Resisting poison, disease, and other physical ailments.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Resilience"
+  },
+  {
+    "id": "insight",
+    "name": "Insight",
+    "description": "Sensing moods, reading body language, and detecting emotional tells.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Intuition",
+    "combatActions": [
+      { "name": "Read Intent", "description": "Make an Insight check to determine if an opponent is about to flee, surrender, or press the attack." }
+    ]
+  },
+  {
+    "id": "investigation",
+    "name": "Investigation",
+    "description": "Finding clues, noticing details, and solving puzzles through logical deduction.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Logic"
+  },
+  {
+    "id": "labor",
+    "name": "Labor",
+    "description": "Performing tasks that require sustained physical exertion.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Brute Force"
+  },
+  {
+    "id": "logic",
+    "name": "Logic",
+    "description": "The ability to reason, solve complex problems, and make sound judgments.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Logic"
+  },
+  {
+    "id": "lore_field",
+    "name": "Lore (Field)",
+    "description": "Specialized knowledge in a specific field, such as 'Monster Lore' or 'Arcane Lore'.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Knowledge"
+  },
+  {
+    "id": "pain_tolerance",
+    "name": "Pain Tolerance",
+    "description": "The ability to endure physical pain and continue functioning.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Resilience"
+  },
+  {
+    "id": "perception",
+    "name": "Perception",
+    "description": "Noticing details in your environment using your senses.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Perception"
+  },
+  {
+    "id": "performance",
+    "name": "Performance",
+    "description": "Captivating an audience through music, acting, or oratory.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Charm",
+    "combatActions": [
+      { "name": "Distracting Performance", "description": "Make a Performance check to create a diversion, giving allies a bonus to their Stealth checks." }
+    ]
+  },
+  {
+    "id": "persuasion",
+    "name": "Persuasion",
+    "description": "Convincing others through reasoned argument, kindness, and compassion.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Charm",
+    "combatActions": [
+      { "name": "Plea for Mercy", "description": "When an opponent is defeated, you can use Persuasion to convince your allies to show mercy." }
+    ]
+  },
+  {
+    "id": "running",
+    "name": "Running",
+    "description": "The ability to run for long distances without tiring.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Constitution"
+  },
+  {
+    "id": "sleight_of_hand",
+    "name": "Sleight of Hand",
+    "description": "Performing acts of manual dexterity, such as pickpocketing or magic tricks.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Dexterity"
+  },
+  {
+    "id": "swimming",
+    "name": "Swimming",
+    "description": "The ability to move through water effectively.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Endurance"
+  },
+  {
+    "id": "tinkering",
+    "name": "Tinkering",
+    "description": "Disarming traps, repairing simple mechanisms, and jury-rigging devices.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Dexterity"
+  },
+  {
+    "id": "vigor",
+    "name": "Vigor",
+    "description": "The ability to push your body beyond its normal limits.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Endurance"
+  },
+  { "id": "improvised_weapons", "name": "Improvised Weapons", "description": "Using everyday objects as effective weapons.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Brute Force" },
+  { "id": "polearms", "name": "Polearms", "description": "Fighting with spears, halberds, and other long-hafted weapons.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Endurance" },
+  { "id": "whips_and_chains", "name": "Whips & Chains", "description": "Using flexible weapons to trip, disarm, or attack at a short distance.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Endurance" },
+  { "id": "dual_wielding", "name": "Dual Wielding", "description": "Fighting with a weapon in each hand.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Reflexes" },
+  { "id": "thrown_weapons", "name": "Thrown Weapons", "description": "Using daggers, axes, and other weapons designed to be thrown.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Reflexes" },
+  { "id": "crossbows", "name": "Crossbows", "description": "Proficiency with light, heavy, and hand crossbows.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Dexterity" },
+  { "id": "shields", "name": "Shields", "description": "Using a shield to defend against attacks.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Resilience" },
+  { "id": "hammers_and_maces", "name": "Hammers & Maces", "description": "Proficiency with blunt weapons.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Resilience" },
+  { "id": "brawling", "name": "Brawling", "description": "Unarmed combat using fists, feet, and grappling.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Constitution" },
+  { "id": "axes", "name": "Axes", "description": "Proficiency with battleaxes, handaxes, and greataxes.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Constitution" },
+  { "id": "exotic_weapons", "name": "Exotic Weapons", "description": "Proficiency with rare and unusually shaped weapons.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Knowledge" },
+  { "id": "firearms", "name": "Firearms", "description": "Proficiency with pistols, rifles, and other black-powder weapons.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Knowledge" },
+  { "id": "siege_weapons", "name": "Siege Weapons", "description": "Operating catapults, ballistae, and trebuchets.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Logic" },
+  { "id": "traps", "name": "Traps", "description": "Setting and disarming mechanical and natural traps.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Logic" },
+  { "id": "bows", "name": "Bows", "description": "Proficiency with shortbows and longbows.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Intuition" },
+  { "id": "slings", "name": "Slings", "description": "Using a sling to hurl projectiles with surprising force.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Intuition" },
+  { "id": "weapon_flourish", "name": "Weapon Flourish", "description": "Using stylish and intimidating weapon movements.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Willpower" },
+  { "id": "mindful_archery", "name": "Mindful Archery", "description": "A meditative practice of archery focusing on precision and calm.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Willpower" },
+  { "id": "dazzling_display", "name": "Dazzling Display", "description": "A performance of weapon skill meant to demoralize opponents.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Charm" },
+  { "id": "commanders_arms", "name": "Commander's Arms", "description": "Skill with the traditional weapons of a commanding officer.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Charm" },
+  { "id": "subduing_strikes", "name": "Subduing Strikes", "description": "Techniques to incapacitate foes without causing lethal harm.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Perception" },
+  { "id": "disarming_blow", "name": "Disarming Blow", "description": "Targeted attacks to knock a weapon from an opponent's grasp.", "category": "Weapon", "tier": 1, "governingSubAttribute": "Perception" },
+  { "id": "armor_spikes", "name": "Armor Spikes", "description": "Dealing damage to grappling opponents with armor spikes.", "category": "Armor", "tier": 1, "governingSubAttribute": "Brute Force" },
+  { "id": "powerful_build", "name": "Powerful Build", "description": "Being considered one size larger for carrying capacity and weapon size.", "category": "Armor", "tier": 1, "governingSubAttribute": "Brute Force" },
+  { "id": "endure", "name": "Endure", "description": "Pushing through pain and exhaustion while wearing heavy armor.", "category": "Armor", "tier": 1, "governingSubAttribute": "Endurance" },
+  { "id": "second_skin", "name": "Second Skin", "description": "Reducing the penalties for sleeping in armor.", "category": "Armor", "tier": 1, "governingSubAttribute": "Endurance" },
+  { "id": "light_armor_evasion", "name": "Light Armor Evasion", "description": "Improved dodging capabilities while wearing light armor.", "category": "Armor", "tier": 1, "governingSubAttribute": "Reflexes" },
+  { "id": "acrobatic_armor", "name": "Acrobatic Armor", "description": "Reducing armor check penalties for acrobatic movements.", "category": "Armor", "tier": 1, "governingSubAttribute": "Reflexes" },
+  { "id": "armor_maintenance", "name": "Armor Maintenance", "description": "Keeping armor in top condition for maximum protection.", "category": "Armor", "tier": 1, "governingSubAttribute": "Dexterity" },
+  { "id": "custom_fit", "name": "Custom Fit", "description": "Modifying armor to better suit your body, reducing penalties.", "category": "Armor", "tier": 1, "governingSubAttribute": "Dexterity" },
+  { "id": "heavy_armor_bracing", "name": "Heavy Armor Bracing", "description": "Using heavy armor to resist being moved or knocked prone.", "category": "Armor", "tier": 1, "governingSubAttribute": "Resilience" },
+  { "id": "tower_shield_use", "name": "Tower Shield Use", "description": "Wielding massive shields that provide near-total cover.", "category": "Armor", "tier": 1, "governingSubAttribute": "Resilience" },
+  { "id": "forced_march", "name": "Forced March", "description": "Traveling long distances in armor without becoming fatigued.", "category": "Armor", "tier": 1, "governingSubAttribute": "Constitution" },
+  { "id": "tireless_sentinel", "name": "Tireless Sentinel", "description": "Staying alert and watchful for extended periods in armor.", "category": "Armor", "tier": 1, "governingSubAttribute": "Constitution" },
+  { "id": "armor_history", "name": "Armor History", "description": "Knowledge of famous armors and their wearers.", "category": "Armor", "tier": 1, "governingSubAttribute": "Knowledge" },
+  { "id": "material_science", "name": "Material Science", "description": "Understanding the properties of materials used in armor.", "category": "Armor", "tier": 1, "governingSubAttribute": "Knowledge" },
+  { "id": "armor_modification", "name": "Armor Modification", "description": "Applying non-magical upgrades to armor.", "category": "Armor", "tier": 1, "governingSubAttribute": "Logic" },
+  { "id": "layering", "name": "Layering", "description": "Effectively wearing multiple layers of light armor.", "category": "Armor", "tier": 1, "governingSubAttribute": "Logic" },
+  { "id": "find_the_gaps", "name": "Find the Gaps", "description": "Intuitively knowing where to strike an armored foe.", "category": "Armor", "tier": 1, "governingSubAttribute": "Intuition" },
+  { "id": "situational_awareness", "name": "Situational Awareness", "description": "Maintaining perception of the battlefield despite armor's limitations.", "category": "Armor", "tier": 1, "governingSubAttribute": "Intuition" },
+  { "id": "unflinching", "name": "Unflinching", "description": "Resisting fear and intimidation through sheer willpower.", "category": "Armor", "tier": 1, "governingSubAttribute": "Willpower" },
+  { "id": "consecrated_armor", "name": "Consecrated Armor", "description": "Imbuing armor with divine or spiritual protection.", "category": "Armor", "tier": 1, "governingSubAttribute": "Willpower" },
+  { "id": "regal_bearing", "name": "Regal Bearing", "description": "Projecting an aura of authority while in fine armor.", "category": "Armor", "tier": 1, "governingSubAttribute": "Charm" },
+  { "id": "dread_visage", "name": "Dread Visage", "description": "Making your helmet and armor appear more intimidating.", "category": "Armor", "tier": 1, "governingSubAttribute": "Charm" },
+  { "id": "comfortable_fit", "name": "Comfortable Fit", "description": "Being so accustomed to your armor it feels like a second skin.", "category": "Armor", "tier": 1, "governingSubAttribute": "Perception" },
+  { "id": "protective_instinct", "name": "Protective Instinct", "description": "Using your armored body to shield allies from harm.", "category": "Armor", "tier": 1, "governingSubAttribute": "Perception" },
+  { "id": "acclimatization", "name": "Acclimatization", "description": "Adapting to harsh environmental conditions.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Resilience" },
+  { "id": "adrenaline_control", "name": "Adrenaline Control", "description": "Gaining a temporary boost to physical abilities in stressful situations.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Constitution" },
+  { "id": "animal_handling", "name": "Animal Handling", "description": "Taming, training, and building strong bonds with wild animals.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Perception", "combatActions": [{ "name": "Calm Beast", "description": "Attempt to calm a hostile but non-magical beast, potentially ending combat." }] },
+  { "id": "bargaining", "name": "Bargaining", "description": "High-stakes negotiation, diplomacy, and making binding deals.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Charm", "combatActions": [{ "name": "Negotiate Truce", "description": "Attempt to persuade intelligent enemies to stop fighting in exchange for something." }] },
+  { "id": "breaching", "name": "Breaching", "description": "Forcibly opening locked doors and breaking down walls.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Brute Force" },
+  { "id": "cartography", "name": "Cartography", "description": "Creating accurate maps of explored areas.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Knowledge" },
+  { "id": "command", "name": "Command", "description": "Giving direct orders that allies or underlings are compelled to follow.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Charm", "combatActions": [{ "name": "Rally", "description": "Allow an ally to reroll a failed fear check." }, { "name": "Direct Ally", "description": "Grant an ally an immediate extra move action." }] },
+  { "id": "craft_field", "name": "Craft (Field)", "description": "Expertise in a specific craft, such as 'Blacksmithing' or 'Alchemy'.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Dexterity" },
+  { "id": "deception", "name": "Deception", "description": "Weaving complex lies and maintaining elaborate false identities.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Charm", "combatActions": [{ "name": "Feint", "description": "Make a Deception check opposed by Insight; success grants a bonus to your next attack." }] },
+  { "id": "escape_artistry", "name": "Escape Artistry", "description": "Slipping out of bindings, grapples, and confinement.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Reflexes" },
+  { "id": "intimidation", "name": "Intimidation", "description": "Coercing others through physical presence and implied threats.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Brute Force", "combatActions": [{ "name": "Demoralize", "description": "Impose a penalty on a target's attack rolls through an opposed Intimidation vs. Willpower check." }] },
+  { "id": "iron_gut", "name": "Iron Gut", "description": "Consuming and resisting the effects of spoiled or toxic substances.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Endurance" },
+  { "id": "kinesis_arcane", "name": "Kinesis (Arcane)", "description": "Moving small objects with your mind through arcane power.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Willpower" },
+  { "id": "lockpicking", "name": "Lockpicking", "description": "Opening mechanical locks without a key.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Dexterity" },
+  { "id": "medicine", "name": "Medicine", "description": "Diagnosing illnesses, treating wounds, and stabilizing the dying.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Logic" },
+  { "id": "meditation", "name": "Meditation", "description": "Achieving a state of deep focus for mental recovery or clarity.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Willpower" },
+  { "id": "nature", "name": "Nature", "description": "Knowledge of plants, animals, and natural ecosystems.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Intuition" },
+  { "id": "pursuit", "name": "Pursuit", "description": "Chasing down fleeing targets over long distances.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Constitution" },
+  { "id": "research", "name": "Research", "description": "Finding specific information in libraries, archives, and other sources.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Knowledge" },
+  { "id": "resilience_skill", "name": "Resilience", "description": "The ability to recover from physical and mental hardship.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Endurance" },
+  { "id": "stealth", "name": "Stealth", "description": "For moving silently, hiding effectively, and remaining unseen.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Reflexes", "combatActions": [{ "name": "Hide", "description": "as an action, make a Stealth check to become hidden if you have cover" }, { "name": "Sneak Attack", "description": "if you attack from hiding, you gain a bonus to your attack and damage roll" }] },
+  { "id": "survival", "name": "Survival", "description": "Finding food, water, and shelter in the wilderness.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Resilience" },
+  { "id": "tactics", "name": "Tactics", "description": "Understanding battlefield positioning, strategy, and command.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Logic" },
+  { "id": "tracking", "name": "Tracking", "description": "Following trails and identifying the passage of creatures.", "category": "Advanced", "tier": 2, "governingSubAttribute": "Intuition" },
+  { "id": "stalwart_defense", "name": "Stalwart Defense", "description": "A defensive posture that makes you nearly impossible to move.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Endurance" },
+  { "id": "flowing_evasion", "name": "Flowing Evasion", "description": "A fluid, evasive fighting style that relies on dodging and weaving.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Reflexes" },
+  { "id": "targeted_strike", "name": "Targeted Strike", "description": "Aiming for specific weak points to bypass armor and inflict critical injuries.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Dexterity" },
+  { "id": "unbreakable_body", "name": "Unbreakable Body", "description": "A conditioning technique that makes your body as hard as iron.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Resilience" },
+  { "id": "relentless_pursuit", "name": "Relentless Pursuit", "description": "The ability to chase down any foe, no matter how fast or evasive.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Constitution" },
+  { "id": "anatomical_lore", "name": "Anatomical Lore", "description": "Knowing the vital points and weaknesses of various creatures.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Knowledge" },
+  { "id": "battlefield_tactics", "name": "Battlefield Tactics", "description": "Mastery of small-unit tactics and battlefield control.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Logic" },
+  { "id": "combat_intuition", "name": "Combat Intuition", "description": "An almost precognitive sense of an opponent's next move.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Intuition" },
+  { "id": "weapon_bond", "name": "Weapon Bond", "description": "A mystical connection to a specific weapon, allowing you to call it to hand.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Willpower" },
+  { "id": "warlords_presence", "name": "Warlord's Presence", "description": "An inspiring and terrifying presence on the battlefield.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Charm" },
+  { "id": "reactive_stance", "name": "Reactive Stance", "description": "A combat style focused on counter-attacks and exploiting enemy openings.", "category": "Martial Technique", "tier": 3, "governingSubAttribute": "Perception" },
+  { "id": "psychokinetic_force", "name": "Psychokinetic Force", "description": "Applying telekinetic force to move, lift, or crush objects and creatures.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Brute Force" },
+  { "id": "psychometabolism", "name": "Psychometabolism", "description": "Controlling your body's functions to heal wounds, resist toxins, and enter a state of suspended animation.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Endurance" },
+  { "id": "mental_celerity", "name": "Mental Celerity", "description": "Accelerating your perception of time to grant yourself supernatural speed and reflexes.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Reflexes" },
+  { "id": "psychic_surgery", "name": "Psychic Surgery", "description": "Using fine telekinetic control to manipulate living tissue, mending wounds or causing precise injuries.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Dexterity" },
+  { "id": "biokinesis", "name": "Biokinesis", "description": "Altering your own biological structure to grow claws, gain natural armor, or adapt to environments.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Resilience" },
+  { "id": "adrenal_surge", "name": "Adrenal Surge", "description": "Pushing your body's physical limits through psionic stimulation.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Constitution" },
+  { "id": "mind_palace", "name": "Mind Palace", "description": "Constructing a vast mental library to store and perfectly recall information.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Knowledge" },
+  { "id": "metacreativity", "name": "Metacreativity", "description": "Creating complex objects and structures out of pure psionic energy.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Logic" },
+  { "id": "telepathy", "name": "Telepathy", "description": "Communicating directly with the minds of others.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Willpower" },
+  { "id": "aura_projection", "name": "Aura Projection", "description": "Projecting your psionic presence to inspire awe or terror.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Charm" },
+  { "id": "emotional_projection", "name": "Emotional Projection", "description": "Directly influencing the emotional state of others.", "category": "Psionic Discipline", "tier": 3, "governingSubAttribute": "Perception" },
+  { "id": "arcane_might", "name": "Arcane Might", "description": "Channeling raw magic to enhance physical strength.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Brute Force" },
+  { "id": "runic_warding", "name": "Runic Warding", "description": "Inscribing protective runes on your body or equipment.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Endurance" },
+  { "id": "aeromancy", "name": "Aeromancy", "description": "Controlling wind and weather to create gusts, fog, or lightning.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Reflexes" },
+  { "id": "artifice", "name": "Artifice", "description": "Creating magical items, constructs, and enchantments.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Dexterity" },
+  { "id": "terramancy", "name": "Terramancy", "description": "Shaping earth and stone to create walls, pits, or projectiles.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Resilience" },
+  { "id": "chronomancy", "name": "Chronomancy", "description": "Manipulating time to slow enemies, hasten allies, or glimpse the future.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Constitution" },
+  { "id": "arcane_lore", "name": "Arcane Lore", "description": "Deep knowledge of magical theory, history, and artifacts.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Knowledge" },
+  { "id": "symbology", "name": "Symbology", "description": "Understanding and using magical symbols, glyphs, and wards.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Logic" },
+  { "id": "divination", "name": "Divination", "description": "Gaining knowledge through magical scrying, prophecy, and insight.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Intuition" },
+  { "id": "geomancy", "name": "Geomancy", "description": "Drawing power from ley lines and the natural world to fuel your magic.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Willpower" },
+  { "id": "evocation", "name": "Evocation", "description": "Creating powerful blasts of elemental energy.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Charm" },
+  { "id": "abjuration", "name": "Abjuration", "description": "Protective magic that creates barriers, dispels enchantments, and banishes creatures.", "category": "Arcane Prime", "tier": 3, "governingSubAttribute": "Perception" },
+  { "id": "world_spirit_bond", "name": "World-Spirit Bond", "description": "Drawing on the raw power of the world spirit for physical might.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Brute Force" },
+  { "id": "enduring_spirit", "name": "Enduring Spirit", "description": "A connection to ancient, unyielding spirits that grants immense fortitude.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Endurance" },
+  { "id": "wild_hunt", "name": "Wild Hunt", "description": "Channeling the spirit of the predator to move with supernatural speed and grace.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Reflexes" },
+  { "id": "fetish_crafting", "name": "Fetish Crafting", "description": "Binding spirits into physical objects to create powerful charms and talismans.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Dexterity" },
+  { "id": "stone_spirit_bond", "name": "Stone-Spirit Bond", "description": "Invoking spirits of stone and earth to grant you their resilience.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Resilience" },
+  { "id": "river_spirit_bond", "name": "River-Spirit Bond", "description": "The tireless flow of the river spirit grants you unending stamina.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Constitution" },
+  { "id": "lore_spirits", "name": "Lore Spirits", "description": "Consulting with spirits of knowledge to recall forgotten histories and lore.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Knowledge" },
+  { "id": "pattern_spirits", "name": "Pattern Spirits", "description": "Perceiving the intricate patterns of fate and destiny woven by spirits.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Logic" },
+  { "id": "whispering_spirits", "name": "Whispering Spirits", "description": "Hearing the whispers of nearby spirits, gaining insight and warnings.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Intuition" },
+  { "id": "spirit_dominion", "name": "Spirit Dominion", "description": "Imposing your will on spirits to command them to do your bidding.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Willpower" },
+  { "id": "ancestor_spirits", "name": "Ancestor Spirits", "description": "Calling upon the guidance and authority of your ancestral spirits.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Charm" },
+  { "id": "beast_spirits", "name": "Beast Spirits", "description": "Communicating with and taking on the aspects of animal spirits.", "category": "Spirit Domain", "tier": 3, "governingSubAttribute": "Perception" },
+  { "id": "demolitions", "name": "Demolitions", "description": "Expertise in the use of explosives to destroy structures and obstacles.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Brute Force" },
+  { "id": "infiltration", "name": "Infiltration", "description": "Bypassing security systems and entering secure locations undetected.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Endurance" },
+  { "id": "espionage", "name": "Espionage", "description": "Gathering intelligence through disguise, stealth, and covert operations.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Reflexes" },
+  { "id": "masterwork_crafting", "name": "Masterwork Crafting", "description": "Creating items of exceptional quality, bordering on magical.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Dexterity" },
+  { "id": "forensics", "name": "Forensics", "description": "Analyzing crime scenes and evidence to reconstruct events.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Resilience" },
+  { "id": "logistics", "name": "Logistics", "description": "Managing the supply and movement of people and resources for large-scale operations.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Constitution" },
+  { "id": "acumen", "name": "Acumen", "description": "Having deep, almost encyclopedic knowledge in a specific field of study.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Knowledge" },
+  { "id": "analysis", "name": "Analysis", "description": "Breaking down complex problems and systems to understand their underlying principles.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Logic" },
+  { "id": "foresight", "name": "Foresight", "description": "Predicting enemy actions and market trends through careful observation and intuition.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Intuition" },
+  { "id": "master_plan", "name": "Master Plan", "description": "Formulating and executing complex, long-term plans.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Willpower" },
+  { "id": "grand_deception", "name": "Grand Deception", "description": "Creating and maintaining large-scale deceptions and conspiracies.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Charm" },
+  { "id": "spymaster", "name": "Spymaster", "description": "Running networks of spies and informants to gather intelligence.", "category": "Expertise Field", "tier": 3, "governingSubAttribute": "Perception" }
+]

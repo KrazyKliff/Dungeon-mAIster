@@ -1,0 +1,40 @@
+{
+  "terrainTypes": [
+    {
+      "name": "Difficult Terrain",
+      "effect": "Moving through these areas costs double the normal movement."
+    },
+    {
+      "name": "Unstable Ground",
+      "effect": "Any character who takes damage or moves quickly must make an Agility check or be knocked Prone."
+    },
+    {
+      "name": "Impassable",
+      "effect": "Cannot be moved through."
+    }
+  ],
+  "coverTypes": [
+    {
+      "name": "Light Cover",
+      "effect": "You gain a +2 bonus to your defense against ranged attacks."
+    },
+    {
+      "name": "Heavy Cover",
+      "effect": "You gain a +5 bonus to your defense against ranged attacks."
+    },
+    {
+      "name": "Full Cover",
+      "effect": "You cannot be targeted by attacks that require line of sight."
+    }
+  ],
+  "environmentalConditions": [
+    {
+      "name": "Obscured Area",
+      "effect": "Creatures within are effectively Blinded when trying to see outside."
+    },
+    {
+      "name": "High Ground",
+      "effect": "You gain a bonus to your ranged attack rolls against targets at a lower elevation."
+    }
+  ]
+}

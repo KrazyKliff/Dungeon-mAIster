@@ -5,3 +5,4 @@ export * from './lib/character-creation.model';
 export * from './lib/character-creation-events.model';
 export * from './lib/map.model';
 export * from './lib/message.model';
+export * from './lib/rules.model';

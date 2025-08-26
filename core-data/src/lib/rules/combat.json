@@ -1,0 +1,141 @@
+{
+  "combatFlow": {
+    "type": "Turn-based",
+    "roundDuration": "5-6 seconds",
+    "initiative": {
+      "formula": "1d20 + Agility (REF) Modifier + Talent/Effect Bonuses",
+      "description": "Determines turn order for the entire encounter, from highest to lowest."
+    },
+    "turn": {
+      "apAllocation": "Full allotment of Action Points (AP) at the start of your turn.",
+      "actions": [
+        {
+          "name": "Standard Action",
+          "cost": "1 AP",
+          "examples": ["Move", "Attack", "Aim", "Interact with an object"]
+        },
+        {
+          "name": "Complex Action",
+          "cost": "2+ AP",
+          "description": "Many skills and Talents require more than 1 AP to use."
+        },
+        {
+          "name": "Reaction",
+          "cost": "1 Reaction per round",
+          "description": "Some abilities allow you to act outside of your turn."
+        }
+      ]
+    }
+  },
+  "attackRoll": {
+    "formula": "1d20 + Attacker's Relevant Sub-Attribute Modifier + Attacker's Weapon Skill Rank + Attacker's Talent/Effect Bonuses + Situational Modifiers",
+    "condition": "Attack Roll Total >= Defender's Defense",
+    "relevantSubAttribute": [
+      {
+        "weaponType": ["Melee (Light/Finesse)", "Daggers", "Rapiers"],
+        "attribute": "Agility (DEX) Modifier"
+      },
+      {
+        "weaponType": ["Melee (Heavy/Strength)", "Longswords", "Axes", "Maces"],
+        "attribute": "Strength (BF) Modifier"
+      },
+      {
+        "weaponType": ["Ranged (Bows/Crossbows/Firearms)"],
+        "attribute": "Agility (DEX) Modifier"
+      },
+      {
+        "weaponType": ["Thrown Weapons"],
+        "attribute": "Strength (BF) Modifier or Agility (DEX) Modifier"
+      },
+      {
+        "weaponType": ["Unarmed"],
+        "attribute": "Strength (BF) Modifier or Agility (REF) Modifier"
+      },
+      {
+        "weaponType": ["Spell Attacks"],
+        "attribute": "Intellect (LOG) Modifier, Insight (INTU) Modifier, or Presence (CHM/WIL) Modifier (spell-specific)"
+      }
+    ],
+    "targetedAttacks": [
+      {
+        "area": "Head",
+        "modifier": "-4 to hit",
+        "effect": "x2 damage multiplier (or roll on Critical Hit Table)."
+      },
+      {
+        "area": "Arms/Legs",
+        "modifier": "-2 to hit",
+        "effect": "Normal damage, but triggers roll on 'Limb Incapacitation Table' on hit."
+      },
+      {
+        "area": "Torso",
+        "modifier": "No penalty",
+        "effect": "Normal damage."
+      },
+      {
+        "area": "Vitals/Weak Point",
+        "modifier": "Variable penalty to hit",
+        "effect": "Variable damage bonus."
+      }
+    ],
+    "situationalModifiers": [
+      {
+        "condition": "Unaware/Surprised Target",
+        "effect": "Attacker gains Advantage (roll 2d20, take higher)."
+      },
+      {
+        "condition": "Incapacitated/Restrained Target",
+        "effect": "Attacker gains Advantage or auto-hits."
+      },
+      {
+        "condition": "Prone Target",
+        "effect": "Melee attacks gain Advantage, Ranged attacks gain Disadvantage."
+      },
+      {
+        "condition": "Flanked Target",
+        "effect": "Attacker gains Advantage (if flanking rules are active)."
+      }
+    ]
+  },
+  "damageCalculation": {
+    "formula": "Base Weapon/Spell Damage + Attacker's Relevant Sub-Attribute Modifier + Attacker's Talent/Effect Bonuses - Defender's Damage Reduction",
+    "bonusSources": [
+      {
+        "type": "Melee/Thrown",
+        "attribute": "Strength (BF) Modifier"
+      },
+      {
+        "type": "Light Melee/Ranged (Finesse or Ranged property)",
+        "attribute": "Agility (DEX) Modifier"
+      },
+      {
+        "type": "Spells",
+        "description": "Specific spell effects dictate damage."
+      },
+      {
+        "type": "Talent/Effect Bonuses",
+        "example": "'Great Weapon Master' talent grants +5 damage."
+      }
+    ],
+    "criticalSuccess": {
+      "trigger": "Natural 20 on Attack Roll",
+      "effect": "Damage dice are doubled, and modifiers are added once. Triggers a roll on the Critical Hit Table."
+    },
+    "damageReduction": "Provided by armor, talents, or resistances.",
+    "damageTypes": [
+      "Slashing",
+      "Piercing",
+      "Bludgeoning",
+      "Fire",
+      "Cold",
+      "Lightning",
+      "Thunder",
+      "Acid",
+      "Poison",
+      "Necrotic",
+      "Radiant",
+      "Force",
+      "Psychic"
+    ]
+  }
+}

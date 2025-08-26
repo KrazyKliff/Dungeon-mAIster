@@ -10,13 +10,23 @@ import {
   Origin,
   SpeciesFeature,
   SkillDefinition,
+  CombatRules,
+  CriticalHits,
+  DeathRules,
+  EnvironmentRules,
 } from '@dungeon-maister/data-models';
 import { Location } from './location.models';
 
 @Injectable()
 export class DataAccessService {
-  // Character Creation Data
+  // --- Game Rules Data ---
   private skills: SkillDefinition[] = [];
+  private combatRules: CombatRules | null = null;
+  private criticalHits: CriticalHits | null = null;
+  private deathRules: DeathRules | null = null;
+  private environmentRules: EnvironmentRules | null = null;
+
+  // --- Character Creation Data ---
   private kingdoms: Kingdom[] = [];
   private mammalFeatures: SpeciesFeature[] = [];
   private origins: Origin[] = [];
@@ -25,11 +35,28 @@ export class DataAccessService {
   private devotions: Devotion[] = [];
   private birthSigns: BirthSign[] = [];
 
-  // Location Data
+  // --- Location Data ---
   private locations: Map<string, Location> = new Map();
 
   constructor() {
+    this.loadGameRulesData();
     this.loadCharacterCreationData();
+  }
+
+  private loadGameRulesData() {
+    const dataPath = path.join(__dirname, 'assets/rules');
+    console.log(`[DataAccessService] Loading game rules data from: ${dataPath}`);
+
+    try {
+      this.skills = this.loadDataFile<SkillDefinition[]>(dataPath, 'skills.json');
+      this.combatRules = this.loadDataFile<CombatRules>(dataPath, 'combat.json');
+      this.criticalHits = this.loadDataFile<CriticalHits>(dataPath, 'critical-hits.json');
+      this.deathRules = this.loadDataFile<DeathRules>(dataPath, 'death.json');
+      this.environmentRules = this.loadDataFile<EnvironmentRules>(dataPath, 'environment.json');
+      console.log('[DataAccessService] All game rules data loaded successfully.');
+    } catch (error) {
+      console.error('[DataAccessService] CRITICAL: Failed to load game rules data.', error);
+    }
   }
 
   private loadCharacterCreationData() {
@@ -37,7 +64,6 @@ export class DataAccessService {
     console.log(`[DataAccessService] Loading character creation data from: ${dataPath}`);
 
     try {
-      this.skills = this.loadDataFile<SkillDefinition[]>(dataPath, 'skills.json');
       this.kingdoms = this.loadDataFile<Kingdom[]>(dataPath, 'kingdoms.json');
       this.mammalFeatures = this.loadDataFile<SpeciesFeature[]>(dataPath, 'mammal-features.json');
       this.origins = this.loadDataFile<Origin[]>(dataPath, 'origins.json');
@@ -48,7 +74,6 @@ export class DataAccessService {
       console.log('[DataAccessService] All character creation data loaded successfully.');
     } catch (error) {
       console.error('[DataAccessService] CRITICAL: Failed to load character creation data.', error);
-      // In a real application, we might want to exit the process if this core data fails to load.
     }
   }
 
@@ -64,8 +89,14 @@ export class DataAccessService {
     }
   }
 
-  // --- Getters for Character Creation Data ---
+  // --- Getters for Game Rules ---
   getSkills = () => this.skills;
+  getCombatRules = () => this.combatRules;
+  getCriticalHits = () => this.criticalHits;
+  getDeathRules = () => this.deathRules;
+  getEnvironmentRules = () => this.environmentRules;
+
+  // --- Getters for Character Creation Data ---
   getKingdoms = () => this.kingdoms;
   getMammalFeatures = () => this.mammalFeatures;
   getOrigins = () => this.origins;
