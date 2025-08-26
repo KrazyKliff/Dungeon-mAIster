@@ -1,0 +1,83 @@
+[
+  {
+    "id": "athletics",
+    "name": "Athletics",
+    "description": "Covers climbing, jumping, swimming, and raw physical feats.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Brute Force",
+    "combatActions": [
+      { "name": "Shove", "description": "push opponent 2 meters" },
+      { "name": "Climb", "description": "move up vertical surface at half speed" },
+      { "name": "Grapple", "description": "initiate a grapple" }
+    ]
+  },
+  {
+    "id": "acrobatics",
+    "name": "Acrobatics",
+    "description": "Tumbling, balancing, and feats of bodily coordination.",
+    "category": "General",
+    "tier": 1,
+    "governingSubAttribute": "Reflexes",
+    "combatActions": [
+      { "name": "Tumble", "description": "move through an enemy's threatened area without provoking an attack of opportunity" },
+      { "name": "Kip-Up", "description": "stand up from a prone position as a free action" }
+    ]
+  },
+  {
+    "id": "stealth",
+    "name": "Stealth",
+    "description": "For moving silently, hiding effectively, and remaining unseen.",
+    "category": "General",
+    "tier": 2,
+    "governingSubAttribute": "Reflexes",
+    "combatActions": [
+      { "name": "Hide", "description": "as an action, make a Stealth check to become hidden if you have cover" },
+      { "name": "Sneak Attack", "description": "if you attack from hiding, you gain a bonus to your attack and damage roll" }
+    ]
+  },
+  {
+    "id": "heavy_weapons",
+    "name": "Heavy Weapons",
+    "description": "Proficiency with large, two-handed weapons like greatswords, mauls, and greataxes.",
+    "category": "Weapon",
+    "tier": 1,
+    "governingSubAttribute": "Brute Force",
+    "combatActions": [
+        { "name": "Cleave", "description": "after felling an opponent, you may immediately make an attack against another adjacent opponent" }
+    ]
+  },
+  {
+    "id": "light_blades",
+    "name": "Light Blades",
+    "description": "Precision fighting with daggers, shortswords, and rapiers.",
+    "category": "Weapon",
+    "tier": 1,
+    "governingSubAttribute": "Dexterity",
+    "combatActions": [
+        { "name": "Precise Strike", "description": "you can target a specific weak point to ignore a portion of the enemy's armor" }
+    ]
+  },
+  {
+    "id": "overwhelm",
+    "name": "Overwhelm",
+    "description": "The art of breaking guards and shattering defenses with pure force.",
+    "category": "Martial Technique",
+    "tier": 3,
+    "governingSubAttribute": "Brute Force",
+    "combatActions": [
+        { "name": "Sunder", "description": "you can make attacks that specifically target and reduce the effectiveness of an opponent's armor or shield" }
+    ]
+  },
+  {
+    "id": "clairvoyance",
+    "name": "Clairvoyance",
+    "description": "The discipline of perceiving events and locations beyond your physical senses.",
+    "category": "Psionic Discipline",
+    "tier": 3,
+    "governingSubAttribute": "Intuition",
+    "combatActions": [
+        { "name": "Third Eye", "description": "you can see invisible creatures and objects" }
+    ]
+  }
+]

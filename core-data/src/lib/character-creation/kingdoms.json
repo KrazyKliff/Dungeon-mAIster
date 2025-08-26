@@ -1,0 +1,38 @@
+[
+  {
+    "id": "Mammal",
+    "name": "Mammal",
+    "description": "Adaptable and social. Primary Sub-Stats: Empathy & Stamina.",
+    "primarySubStats": ["Charm", "Endurance"]
+  },
+  {
+    "id": "Reptile/Amphibian",
+    "name": "Reptile/Amphibian",
+    "description": "Resilient and perceptive. Primary Sub-Stats: Toughness & Intuition.",
+    "primarySubStats": ["Constitution", "Intuition"]
+  },
+  {
+    "id": "Avian",
+    "name": "Avian",
+    "description": "Swift and commanding. Primary Sub-Stats: Agility & Presence.",
+    "primarySubStats": ["Reflexes", "Willpower"]
+  },
+  {
+    "id": "Aquatic",
+    "name": "Aquatic",
+    "description": "Powerful and enduring. Primary Sub-Stats: Might & Endurance.",
+    "primarySubStats": ["Brute Force", "Endurance"]
+  },
+  {
+    "id": "Plant",
+    "name": "Plant",
+    "description": "Patient and wise. Primary Sub-Stats: Willpower & Knowledge.",
+    "primarySubStats": ["Willpower", "Knowledge"]
+  },
+  {
+    "id": "Insect",
+    "name": "Insect",
+    "description": "Intricate and logical. Primary Sub-Stats: Finesse & Reasoning.",
+    "primarySubStats": ["Dexterity", "Logic"]
+  }
+]

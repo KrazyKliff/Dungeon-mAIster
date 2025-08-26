@@ -13,7 +13,14 @@
         "outputPath": "dist/backend",
         "main": "backend/src/main.ts",
         "tsConfig": "backend/tsconfig.app.json",
-        "assets": ["backend/src/assets"],
+        "assets": [
+          "backend/src/assets",
+          {
+            "glob": "**/*.json",
+            "input": "core-data/src/lib/character-creation",
+            "output": "assets/character-creation"
+          }
+        ],
         "generatePackageJson": true,
         "format": ["cjs"]
       },

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "the_wilds",
+    "name": "The Wilds",
+    "description": "Grants proficiency in Survival and Nature.",
+    "skillProficiencies": ["survival", "nature"]
+  },
+  {
+    "id": "a_major_city",
+    "name": "A Major City",
+    "description": "Grants proficiency in Investigation and Stealth.",
+    "skillProficiencies": ["investigation", "stealth"]
+  },
+  {
+    "id": "a_small_village",
+    "name": "A Small Village",
+    "description": "Grants proficiency in Persuasion and Labor.",
+    "skillProficiencies": ["persuasion", "labor"]
+  },
+  {
+    "id": "an_institution",
+    "name": "An Institution",
+    "description": "Grants proficiency in Academics and Discipline.",
+    "skillProficiencies": ["academics", "discipline"]
+  }
+]

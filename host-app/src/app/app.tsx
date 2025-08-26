@@ -4,22 +4,28 @@ import { NarrativeLog } from './narrative-log';
 import { MapViewer } from './map-viewer';
 import { GameState, GameMessage } from '@dungeon-maister/data-models';
 import { AIDebugViewer } from './ai-debug-viewer';
+import { CharacterCreationWizard } from './components/character-creation/CharacterCreationWizard';
 
 export function App() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [messages, setMessages] = useState<GameMessage[]>([]);
-  const [gameState, setGameState] = useState<GameState>({ map: [], entities: [], characters: {}, selectedEntityId: null, props:[] });
+  const [gameState, setGameState] = useState<GameState | null>(null);
   const [isDebuggerVisible, setIsDebuggerVisible] = useState(false);
   const [lastAIResponse, setLastAIResponse] = useState(null);
 
   useEffect(() => {
-    const newSocket = io();
+    // The backend now expects the client to initiate character creation.
+    // We will not send a default gameState until creation is complete.
+    const newSocket = io('http://localhost:3000'); // Explicitly connect
     setSocket(newSocket);
     newSocket.on('connect', () => setIsConnected(true));
     newSocket.on('disconnect', () => setIsConnected(false));
     newSocket.on('message', (message: GameMessage) => setMessages((prev) => [message, ...prev]));
-    newSocket.on('gameState', (newGameState: GameState) => setGameState(newGameState));
+    newSocket.on('gameState', (newGameState: GameState) => {
+      console.log('Received new game state:', newGameState);
+      setGameState(newGameState);
+    });
     newSocket.on('ai_debug', (data) => setLastAIResponse(data));
     
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -47,7 +53,7 @@ export function App() {
         <NarrativeLog messages={messages} />
       </div>
       <div style={{ flex: 2, padding: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {gameState.map.length > 0 ? (
+        {gameState && gameState.map.length > 0 ? (
           <MapViewer
             mapData={gameState.map}
             entities={gameState.entities}
@@ -55,7 +61,9 @@ export function App() {
             selectedEntityId={gameState.selectedEntityId}
             onEntityClick={handleSelectEntity}
           />
-        ) : ( <p>Waiting for map data from server...</p> )}
+        ) : (
+          socket && <CharacterCreationWizard socket={socket} />
+        )}
       </div>
       {isDebuggerVisible && <AIDebugViewer lastResponse={lastAIResponse} onClose={() => setIsDebuggerVisible(false)} />}
     </div>

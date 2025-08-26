@@ -1,0 +1,35 @@
+[
+  {
+    "id": "warden_initiate",
+    "name": "Warden Initiate",
+    "description": "+1 Willpower, +1 Intuition; Skills: Discipline, Tracking; Gear: A traveler's cloak, a simple weapon, a Warden's token.",
+    "statModifiers": [
+      { "subAttribute": "Willpower", "value": 1 },
+      { "subAttribute": "Intuition", "value": 1 }
+    ],
+    "skillProficiencies": ["discipline", "tracking"],
+    "startingGear": ["Traveler's Cloak", "Simple Weapon", "Warden's Token"]
+  },
+  {
+    "id": "city_guard",
+    "name": "City Guard",
+    "description": "+1 Toughness, +1 Presence; Skills: Guard, Intimidation; Gear: A uniform, a cudgel or spear, manacles.",
+    "statModifiers": [
+      { "subAttribute": "Constitution", "value": 1 },
+      { "subAttribute": "Charm", "value": 1 }
+    ],
+    "skillProficiencies": ["guard", "intimidation"],
+    "startingGear": ["Uniform", "Cudgel or Spear", "Manacles"]
+  },
+  {
+    "id": "sky_sailor",
+    "name": "Sky-Sailor",
+    "description": "+1 Agility, +1 Finesse; Skills: Acrobatics, Tinkering; Gear: A sturdy harness, a spyglass, a set of mechanic's tools.",
+    "statModifiers": [
+      { "subAttribute": "Reflexes", "value": 1 },
+      { "subAttribute": "Dexterity", "value": 1 }
+    ],
+    "skillProficiencies": ["acrobatics", "tinkering"],
+    "startingGear": ["Sturdy Harness", "Spyglass", "Mechanic's Tools"]
+  }
+]
