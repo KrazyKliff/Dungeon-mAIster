@@ -4,8 +4,12 @@
   "private": true,
   "dependencies": {
     "@react-native/metro-config": "*",
+    "@react-navigation/bottom-tabs": "*",
+    "@react-navigation/native": "*",
     "react": "*",
     "react-native": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*",
     "react-native-svg": "*",
     "metro-config": "*"
   }
