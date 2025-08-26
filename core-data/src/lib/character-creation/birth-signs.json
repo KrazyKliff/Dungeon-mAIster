@@ -1,0 +1,58 @@
+[
+  {
+    "id": "the_warrior", "name": "The Warrior", "rollRange": [1, 5], "description": "+1 Might sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Brute Force", "value": 1 }]
+  },
+  {
+    "id": "the_survivor", "name": "The Survivor", "rollRange": [6, 10], "description": "+1 Endurance sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Endurance", "value": 1 }]
+  },
+  {
+    "id": "the_dancer", "name": "The Dancer", "rollRange": [11, 15], "description": "+1 Agility sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Reflexes", "value": 1 }]
+  },
+  {
+    "id": "the_artisan", "name": "The Artisan", "rollRange": [16, 20], "description": "+1 Finesse sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Dexterity", "value": 1 }]
+  },
+  {
+    "id": "the_mountain", "name": "The Mountain", "rollRange": [21, 25], "description": "+1 Toughness sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Constitution", "value": 1 }]
+  },
+  {
+    "id": "the_runner", "name": "The Runner", "rollRange": [26, 30], "description": "+1 Stamina sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Endurance", "value": 1 }]
+  },
+  {
+    "id": "the_scholar", "name": "The Scholar", "rollRange": [31, 35], "description": "+1 Knowledge sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Knowledge", "value": 1 }]
+  },
+  {
+    "id": "the_architect", "name": "The Architect", "rollRange": [36, 40], "description": "+1 Reasoning sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Logic", "value": 1 }]
+  },
+  {
+    "id": "the_oracle", "name": "The Oracle", "rollRange": [41, 45], "description": "+1 Intuition sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Intuition", "value": 1 }]
+  },
+  {
+    "id": "the_sentinel", "name": "The Sentinel", "rollRange": [46, 50], "description": "+1 Willpower sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Willpower", "value": 1 }]
+  },
+  {
+    "id": "the_monarch", "name": "The Monarch", "rollRange": [51, 55], "description": "+1 Presence sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Charm", "value": 1 }]
+  },
+  {
+    "id": "the_confidant", "name": "The Confidant", "rollRange": [56, 60], "description": "+1 Empathy sub-stat.",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Charm", "value": 1 }]
+  },
+  {
+    "id": "the_apprentice", "name": "The Apprentice", "rollRange": [61, 65], "description": "Gain proficiency (Mastery Tier 1) in one General Skill of your choice.",
+    "effects": [{ "type": "skill_proficiency", "skillTier": "General" }]
+  },
+  {
+    "id": "the_journeyman", "name": "The Journeyman", "rollRange": [66, 70], "description": "Gain proficiency (Mastery Tier 1) in one Advanced Skill of your choice (must meet 10+ attribute prerequisite).",
+    "effects": [{ "type": "skill_proficiency", "skillTier": "Advanced" }]
+  }
+]

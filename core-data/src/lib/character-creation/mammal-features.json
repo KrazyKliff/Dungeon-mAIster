@@ -1,0 +1,146 @@
+[
+  {
+    "id": "mammal_eyes_predators_focus", "name": "Predator's Focus", "description": "+2 Finesse", "category": "Eyes",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Dexterity", "value": 2 }]
+  },
+  {
+    "id": "mammal_eyes_nocturnal_eyes", "name": "Nocturnal Eyes", "description": "+2 Intuition", "category": "Eyes",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Intuition", "value": 2 }]
+  },
+  {
+    "id": "mammal_eyes_expressive_eyes", "name": "Expressive Eyes", "description": "+2 Empathy", "category": "Eyes",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Charm", "value": 2 }]
+  },
+  {
+    "id": "mammal_eyes_vigilant_gaze", "name": "Vigilant Gaze", "description": "+2 Perception skill", "category": "Eyes",
+    "effects": [{ "type": "skill_bonus", "skillId": "perception", "value": 2 }]
+  },
+  {
+    "id": "mammal_ears_echolocation", "name": "Echolocation", "description": "+2 Intuition", "category": "Ears",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Intuition", "value": 2 }]
+  },
+  {
+    "id": "mammal_ears_acute_hearing", "name": "Acute Hearing", "description": "+2 Perception skill", "category": "Ears",
+    "effects": [{ "type": "skill_bonus", "skillId": "perception", "value": 2 }]
+  },
+  {
+    "id": "mammal_ears_social_ears", "name": "Social Ears", "description": "+2 Empathy", "category": "Ears",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Charm", "value": 2 }]
+  },
+  {
+    "id": "mammal_ears_resistant_ears", "name": "Resistant Ears", "description": "+2 Willpower", "category": "Ears",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Willpower", "value": 2 }]
+  },
+  {
+    "id": "mammal_jaw_powerful_jaws", "name": "Powerful Jaws", "description": "+2 Might", "category": "Jaw",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Brute Force", "value": 2 }]
+  },
+  {
+    "id": "mammal_jaw_foraging_snout", "name": "Foraging Snout", "description": "+2 Endurance", "category": "Jaw",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Endurance", "value": 2 }]
+  },
+  {
+    "id": "mammal_jaw_complex_vocals", "name": "Complex Vocals", "description": "+2 Presence", "category": "Jaw",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Charm", "value": 2 }]
+  },
+  {
+    "id": "mammal_jaw_ruminant_stomach", "name": "Ruminant Stomach", "description": "+2 Toughness", "category": "Jaw",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Constitution", "value": 2 }]
+  },
+  {
+    "id": "mammal_body_powerful_core", "name": "Powerful Core", "description": "+2 Might", "category": "Body/Trunk",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Brute Force", "value": 2 }]
+  },
+  {
+    "id": "mammal_body_burrowing_build", "name": "Burrowing Build", "description": "+2 Stamina", "category": "Body/Trunk",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Endurance", "value": 2 }]
+  },
+  {
+    "id": "mammal_body_flexible_spine", "name": "Flexible Spine", "description": "+2 Agility", "category": "Body/Trunk",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Reflexes", "value": 2 }]
+  },
+  {
+    "id": "mammal_body_dense_body", "name": "Dense Body", "description": "+2 Toughness", "category": "Body/Trunk",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Constitution", "value": 2 }]
+  },
+  {
+    "id": "mammal_arms_long_arms", "name": "Long Arms", "description": "+2 Agility", "category": "Arms",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Reflexes", "value": 2 }]
+  },
+  {
+    "id": "mammal_arms_grasping_hands", "name": "Grasping Hands", "description": "+2 Finesse", "category": "Arms",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Dexterity", "value": 2 }]
+  },
+  {
+    "id": "mammal_arms_climbing_claws", "name": "Climbing Claws", "description": "+2 Might", "category": "Arms",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Brute Force", "value": 2 }]
+  },
+  {
+    "id": "mammal_arms_mighty_arms", "name": "Mighty Arms", "description": "+2 Might", "category": "Arms",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Brute Force", "value": 2 }]
+  },
+  {
+    "id": "mammal_legs_sprinters_legs", "name": "Sprinter's Legs", "description": "+2 Agility", "category": "Legs",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Reflexes", "value": 2 }]
+  },
+  {
+    "id": "mammal_legs_endurance_trot", "name": "Endurance Trot", "description": "+2 Stamina", "category": "Legs",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Endurance", "value": 2 }]
+  },
+  {
+    "id": "mammal_legs_powerful_haunches", "name": "Powerful Haunches", "description": "+2 Might", "category": "Legs",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Brute Force", "value": 2 }]
+  },
+  {
+    "id": "mammal_legs_sturdy_legs", "name": "Sturdy Legs", "description": "+2 Endurance", "category": "Legs",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Endurance", "value": 2 }]
+  },
+  {
+    "id": "mammal_tail_prehensile_tail", "name": "Prehensile Tail", "description": "+2 Finesse", "category": "Tail",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Dexterity", "value": 2 }]
+  },
+  {
+    "id": "mammal_tail_social_warning_tail", "name": "Social/Warning Tail", "description": "+2 Presence", "category": "Tail",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Charm", "value": 2 }]
+  },
+  {
+    "id": "mammal_tail_balanced_tail", "name": "Balanced Tail", "description": "+2 Agility", "category": "Tail",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Reflexes", "value": 2 }]
+  },
+  {
+    "id": "mammal_tail_no_tail", "name": "No Tail", "description": "+2 Endurance", "category": "Tail",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Endurance", "value": 2 }]
+  },
+  {
+    "id": "mammal_skin_thick_winter_coat", "name": "Thick Winter Coat", "description": "+2 Toughness", "category": "Skin/Fur",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Constitution", "value": 2 }]
+  },
+  {
+    "id": "mammal_skin_sensitive_whiskers", "name": "Sensitive Whiskers", "description": "+2 Intuition", "category": "Skin/Fur",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Intuition", "value": 2 }]
+  },
+  {
+    "id": "mammal_skin_social_grooming", "name": "Social Grooming", "description": "+2 Empathy", "category": "Skin/Fur",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Charm", "value": 2 }]
+  },
+  {
+    "id": "mammal_skin_thick_hide", "name": "Thick Hide", "description": "+2 Toughness", "category": "Skin/Fur",
+    "effects": [{ "type": "sub-attribute_bonus", "subAttribute": "Constitution", "value": 2 }]
+  },
+  {
+    "id": "mammal_evo_universal_boost", "name": "Universal Boost", "description": "+4 to any one sub-stat.", "category": "Evo. Advantage",
+    "effects": [{ "type": "special", "description": "+4 to any one sub-stat." }]
+  },
+  {
+    "id": "mammal_evo_pack_tactics", "name": "Pack Tactics", "description": "Gain a bonus to attack when an ally is adjacent to your target.", "category": "Evo. Advantage",
+    "effects": [{ "type": "special", "description": "Gain a bonus to attack when an ally is adjacent to your target." }]
+  },
+  {
+    "id": "mammal_evo_hibernation", "name": "Hibernation", "description": "Can enter a state of suspended animation to survive with no food.", "category": "Evo. Advantage",
+    "effects": [{ "type": "special", "description": "Can enter a state of suspended animation to survive with no food." }]
+  },
+  {
+    "id": "mammal_evo_alphas_roar", "name": "Alpha's Roar", "description": "Once per day, grant allies a bonus on their next action.", "category": "Evo. Advantage",
+    "effects": [{ "type": "special", "description": "Once per day, grant allies a bonus on their next action." }]
+  }
+]

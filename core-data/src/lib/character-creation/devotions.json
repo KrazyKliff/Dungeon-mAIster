@@ -1,0 +1,44 @@
+[
+  {
+    "id": "faith_great_wolf",
+    "name": "Faith in the Great Wolf",
+    "description": "+1 Might.",
+    "kingdom": "Mammal",
+    "bonus": { "subAttribute": "Brute Force", "value": 1 },
+    "benefit": "You are inspired by the strength of the pack leader."
+  },
+  {
+    "id": "faith_all_mother_bear",
+    "name": "Faith in the All-Mother Bear",
+    "description": "+1 Toughness.",
+    "kingdom": "Mammal",
+    "bonus": { "subAttribute": "Constitution", "value": 1 },
+    "benefit": "You are protected by the resilience of a mother's love."
+  },
+  {
+    "id": "philosophy_law_of_the_pack",
+    "name": "The Law of the Pack",
+    "description": "+1 Empathy.",
+    "kingdom": "Mammal",
+    "bonus": { "subAttribute": "Charm", "value": 1 },
+    "benefit": "You understand that the group is stronger than the individual."
+  },
+  {
+    "id": "anti_religion_alphas_will",
+    "name": "The Alpha's Will",
+    "description": "+1 Might (Prerequisite: STR 12+).",
+    "kingdom": "Mammal",
+    "bonus": { "subAttribute": "Brute Force", "value": 1 },
+    "benefit": "You believe in strength above all, and that you are the source of your own power.",
+    "prerequisite": { "type": "attribute", "attribute": "STR", "value": 12 }
+  },
+  {
+    "id": "science_social_dynamics",
+    "name": "Social Dynamics",
+    "description": "+1 Reasoning (Prerequisite: INT 12+).",
+    "kingdom": "Mammal",
+    "bonus": { "subAttribute": "Logic", "value": 1 },
+    "benefit": "You see social interactions as a system to be analyzed and understood.",
+    "prerequisite": { "type": "attribute", "attribute": "INT", "value": 12 }
+  }
+]

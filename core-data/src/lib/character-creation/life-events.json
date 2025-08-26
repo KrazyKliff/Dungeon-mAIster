@@ -1,0 +1,46 @@
+[
+  {
+    "id": "life_of_hardship",
+    "name": "A Life of Hardship",
+    "description": "+2 Toughness, +1 Endurance, -1 Empathy; Skills: Fortitude, Vigor.",
+    "statModifiers": [
+      { "subAttribute": "Constitution", "value": 2 },
+      { "subAttribute": "Endurance", "value": 1 },
+      { "subAttribute": "Charm", "value": -1 }
+    ],
+    "skillProficiencies": ["fortitude", "vigor"]
+  },
+  {
+    "id": "life_of_study",
+    "name": "A Life of Study",
+    "description": "+2 Reasoning, +1 Knowledge, -1 Might; Skills: Research, Logic.",
+    "statModifiers": [
+      { "subAttribute": "Logic", "value": 2 },
+      { "subAttribute": "Knowledge", "value": 1 },
+      { "subAttribute": "Brute Force", "value": -1 }
+    ],
+    "skillProficiencies": ["research", "logic"]
+  },
+  {
+    "id": "life_of_service",
+    "name": "A Life of Service",
+    "description": "+2 Empathy, +1 Willpower, -1 Finesse; Skills: Discipline, Etiquette.",
+    "statModifiers": [
+      { "subAttribute": "Charm", "value": 2 },
+      { "subAttribute": "Willpower", "value": 1 },
+      { "subAttribute": "Dexterity", "value": -1 }
+    ],
+    "skillProficiencies": ["discipline", "etiquette"]
+  },
+  {
+    "id": "life_of_travel",
+    "name": "A Life of Travel",
+    "description": "+2 Stamina, +1 Intuition, -1 Knowledge; Skills: Running, Perception.",
+    "statModifiers": [
+      { "subAttribute": "Endurance", "value": 2 },
+      { "subAttribute": "Intuition", "value": 1 },
+      { "subAttribute": "Knowledge", "value": -1 }
+    ],
+    "skillProficiencies": ["running", "perception"]
+  }
+]
