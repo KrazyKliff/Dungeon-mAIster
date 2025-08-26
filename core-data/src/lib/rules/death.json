@@ -1,0 +1,20 @@
+{
+  "reachingZeroHP": {
+    "description": "When a creature is reduced to 0 HP, they are typically rendered unconscious and are in a dying state.",
+    "woundThresholds": {
+      "description": "If an attack reduces a target's HP below a Wound Threshold, or if it's a Called Shot, the target suffers a debilitating injury.",
+      "thresholds": ["75%", "50%", "25%"]
+    }
+  },
+  "stabilizing": {
+    "skill": "Medicine",
+    "action": "Make a Medicine check as an action to stabilize a dying creature.",
+    "effect": "A stabilized creature is no longer in immediate danger of dying but remains unconscious."
+  },
+  "specialRules": [
+    {
+      "name": "The Survivor (Birth Sign)",
+      "effect": "Once per day, when a character would be reduced to 0 HP, they can choose to be reduced to 1 HP instead."
+    }
+  ]
+}

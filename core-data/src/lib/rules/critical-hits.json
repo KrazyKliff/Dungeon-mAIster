@@ -1,0 +1,62 @@
+{
+  "triggerConditions": [
+    "Critical Hit (Natural 20)",
+    "Limb Target Hit",
+    "Damage Threshold (>25% Max HP)",
+    "Specific Talents/Spells"
+  ],
+  "criticalHitTable": {
+    "name": "Critical Hit Table",
+    "roll": "1d6",
+    "trigger": "Natural 20 on Attack Roll",
+    "results": [
+      {
+        "roll": [1, 2],
+        "name": "Minor Impairment",
+        "effect": "Target is momentarily staggered, -1 to next check/attack."
+      },
+      {
+        "roll": [3, 4],
+        "name": "Moderate Impairment",
+        "effect": "Target drops their weapon, or is knocked prone, or takes -2 to next check/attack."
+      },
+      {
+        "roll": 5,
+        "name": "Severe Impairment",
+        "effect": "Target takes a lasting injury (e.g., sprained ankle, -10ft speed for 1d4 rounds), or is disarmed and knocked back."
+      },
+      {
+        "roll": 6,
+        "name": "Major Injury/Maim",
+        "effect": "Roll on the Limb Incapacitation/Maiming Table."
+      }
+    ]
+  },
+  "limbIncapacitationTable": {
+    "name": "Limb Incapacitation/Maiming Table",
+    "roll": "1d6",
+    "trigger": "Targeted limb hit or Major Injury Crit",
+    "results": [
+      {
+        "roll": [1, 2],
+        "name": "Minor Incapacitation",
+        "effect": "Limb is bruised/strained. Attacks/checks using that limb have Disadvantage until healed."
+      },
+      {
+        "roll": [3, 4],
+        "name": "Moderate Incapacitation",
+        "effect": "Limb is sprained/deep cut. Actions using that limb are impossible until healed. Movement speed halved if leg. Cannot hold shield/weapon if arm."
+      },
+      {
+        "roll": 5,
+        "name": "Severe Incapacitation",
+        "effect": "Limb is broken/severed (if applicable). Attacks/checks using that limb are impossible. Severe movement penalty or unable to move if leg. Requires significant healing (magic/long rest) or prosthetics."
+      },
+      {
+        "roll": 6,
+        "name": "Maimed/Severed",
+        "effect": "Limb is permanently maimed or severed. Requires powerful magic or prosthetics to restore full function. Permanent penalties to actions using that limb."
+      }
+    ]
+  }
+}
