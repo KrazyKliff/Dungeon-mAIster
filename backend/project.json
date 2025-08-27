@@ -19,6 +19,11 @@
             "glob": "**/*.json",
             "input": "core-data/src/lib/character-creation",
             "output": "assets/character-creation"
+          },
+          {
+            "glob": "**/*.json",
+            "input": "core-data/src/lib/lore",
+            "output": "assets/lore"
           }
         ],
         "generatePackageJson": true,

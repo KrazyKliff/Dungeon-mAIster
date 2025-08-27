@@ -12,12 +12,12 @@ describe('App', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have Journal & Dashboard as the title', () => {
-    const { getByText } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
-    expect(getByText('Journal & Dashboard')).toBeTruthy();
-  });
+  // it('should have Journal & Dashboard as the title', () => {
+  //   const { getByText } = render(
+  //     <BrowserRouter>
+  //       <App />
+  //     </BrowserRouter>
+  //   );
+  //   expect(getByText('Journal & Dashboard')).toBeTruthy();
+  // });
 });

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "vaneer-concord",
+    "name": "The Vaneer Concord",
+    "description": "The wealthiest and most technologically advanced power, a council of city-states with its capital in Vaneer. They master Aether-tech, control sky-lanes and Dragonstone flow. Society mixes progress and cutthroat capitalism, with immense sway held by the Artificer's Guild.",
+    "type": "Commonwealth",
+    "capital": "Vaneer"
+  },
+  {
+    "id": "heartland-alliance",
+    "name": "The Heartland Alliance",
+    "description": "A confederation of agrarian kingdoms on the largest, most fertile continents, known as the 'breadbasket of the world.' Its capital, Oakhaven, is built around a massive, ancient tree. They are traditional and spiritual, often clashing with the Concord over land exploitation.",
+    "type": "Commonwealth",
+    "capital": "Oakhaven"
+  },
+  {
+    "id": "iron-caldera",
+    "name": "The Iron Caldera",
+    "description": "A society of smiths, miners, and artisans within a dormant volcano crater. It's the industrial powerhouse, producing fine steel, clockwork, and weaponry. Its capital, Forgespire, is a city of smoke and steam, with a rigid, clan-based society valuing hard work and craftsmanship.",
+    "type": "Commonwealth",
+    "capital": "Forgespire"
+  },
+  {
+    "id": "sunken-theocracy",
+    "name": "The Sunken Theocracy",
+    "description": "A mysterious, devout society in a Sunken City's ruins, ruled by Stone-Priests who interpret the hums of the Dragonstone beneath their capital, Sanctum. Sanctum is a city of canals and ancient towers, lit by bioluminescent fungi. They are deeply spiritual and hold ancient knowledge.",
+    "type": "Commonwealth",
+    "capital": "Sanctum"
+  }
+]

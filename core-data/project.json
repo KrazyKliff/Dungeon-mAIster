@@ -1,0 +1,16 @@
+{
+  "name": "core-data",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "core-data/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/core-data"],
+      "options": {
+        "jestConfig": "core-data/jest.config.ts"
+      }
+    }
+  }
+}

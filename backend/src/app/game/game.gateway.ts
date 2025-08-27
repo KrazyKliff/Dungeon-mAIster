@@ -1,7 +1,9 @@
 import { WebSocketGateway, SubscribeMessage, WebSocketServer, OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { GameState } from '@dungeon-maister/data-models';
-import { moveEntity, performSkillCheck, askAI } from '@dungeon-maister/rule-engine';
+import { moveEntity, performSkillCheck } from '@dungeon-maister/rule-engine';
+
+import { LlmOrchestratorService } from '@dungeon-maister/llm-orchestrator';
 
 @WebSocketGateway({ cors: { origin: '*' } })
 export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
@@ -11,6 +13,8 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
   // For this refactoring, we'll use a static property to hold the global game state.
   // In a more complex app, this would be handled by a dedicated state management service.
   public static gameState: GameState | null = null;
+
+  constructor(private readonly llmOrchestrator: LlmOrchestratorService) {}
 
   afterInit(server: Server) {
     console.log('[GameGateway] Initialized');
@@ -62,7 +66,7 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
         const success = performSkillCheck(player, 'perception', 15);
         responseMessage = { type: 'narrative', content: `Player rolled perception and ${success ? 'succeeded' : 'failed'}!`, author: 'Game Master' };
       } else {
-        const aiContent = await askAI(commandText);
+        const aiContent = await this.llmOrchestrator.generateNarrative(GameGateway.gameState, commandText);
         responseMessage = { type: 'narrative', content: aiContent, author: 'Game Master' };
       }
       this.server.emit('message', responseMessage);
