@@ -1,4 +1,4 @@
-import { MapParameters, MapPropParameters } from '@dungeon-maister/llm-orchestrator';
+import { MapParameters } from '@dungeon-maister/llm-orchestrator';
 
 export interface Location {
   id: string;
@@ -7,6 +7,6 @@ export interface Location {
   biome: string;
   preGeneratedMapParameters?: {
     mapParams: MapParameters;
-    propParams: MapPropParameters;
+    // propParams: MapPropParameters;
   } | null;
 }

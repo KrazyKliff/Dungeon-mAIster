@@ -25,9 +25,9 @@ export class WorldBootstrapperService {
       // Corrected console.log syntax
       console.log(`Bootstrapping location: ${location.name}...`);
       const mapParams = await this.llmOrchestrator.generateMapParameters();
-      const propParams =
-        await this.llmOrchestrator.generateMapPropParameters(location.biome);
-      const blueprint = { mapParams, propParams };
+      // const propParams =
+      //   await this.llmOrchestrator.generateMapPropParameters(location.biome);
+      const blueprint = { mapParams };
       this.dataAccess.updateLocationBlueprint(location.id, blueprint);
     }
     console.log(

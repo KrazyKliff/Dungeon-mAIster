@@ -1,0 +1,50 @@
+[
+  {
+    "id": "sky-trader-fleets",
+    "name": "Sky-Trader Fleets",
+    "description": "Nomadic clans living entirely on Aether-Skiffs, acting as the global commerce lifeline between major powers and remote settlements.",
+    "type": "Unaligned"
+  },
+  {
+    "id": "shatterland-clans",
+    "name": "Shatterland Clans",
+    "description": "Hardy, often violent tribes of scavengers and raiders inhabiting the dangerous Shatterlands.",
+    "type": "Unaligned"
+  },
+  {
+    "id": "warden-clans",
+    "name": "Warden Clans",
+    "description": "Secretive, isolated communities dedicated to guarding the prisons of the twelve Chaos Dragons.",
+    "type": "Unaligned"
+  },
+  {
+    "id": "wind-rider-nomads",
+    "name": "Wind-Rider Nomads",
+    "description": "Avian and insectoid clans taming giant flying beasts, living nomadically in high skies and nesting on remote mountains.",
+    "type": "Unaligned"
+  },
+  {
+    "id": "the-canopy-clans",
+    "name": "The Canopy Clans",
+    "description": "Tree-dwelling societies in colossal forests, building cities in branches connected by rope bridges and zip lines.",
+    "type": "Unaligned"
+  },
+  {
+    "id": "the-mycelial-conclaves",
+    "name": "The Mycelial Conclaves",
+    "description": "Communities of sentient fungi in sprawling, semi-subterranean networks, communicating through a shared consciousness and masters of alchemy and poison.",
+    "type": "Unaligned"
+  },
+  {
+    "id": "the-river-folk",
+    "name": "The River-Folk",
+    "description": "Amphibious and reptilian clans dominating great river systems as traders, fishers, and sometimes pirates.",
+    "type": "Unaligned"
+  },
+  {
+    "id": "the-scrap-baronies-of-the-wastes",
+    "name": "The Scrap-Baronies of the Wastes",
+    "description": "Warlords in the Shatterlands carving out kingdoms from salvaged ancient war machines, ruling over scrapper tribes.",
+    "type": "Unaligned"
+  }
+]

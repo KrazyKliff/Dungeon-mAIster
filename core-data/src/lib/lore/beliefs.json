@@ -1,0 +1,148 @@
+[
+  {
+    "name": "Kael, the Forgemaster",
+    "description": "God of the forge, endurance, and creation. Worshipped by artisans and soldiers. His temples are active forges, and his priests are master smiths.",
+    "tenet": "True worth is forged in hardship"
+  },
+  {
+    "name": "Lyra, the Watcher",
+    "description": "Goddess of stars, destiny, and knowledge. Patron of scholars and navigators. Her temples are observatories with ceilings open to the night sky.",
+    "tenet": "All that is, was, and will be is written in the heavens"
+  },
+  {
+    "name": "The All-Mother",
+    "description": "Goddess of life, healing, and community. Worshipped in every Heartland village, patron of healers and farmers. Her symbol is a tree with roots encircling the world.",
+    "tenet": "All beings are connected; the whole is greater than the parts"
+  },
+  {
+    "name": "The Silent Path",
+    "description": "A widespread philosophy of inner peace and mental discipline. Adherents believe true power comes from mastering the self, not from external gods. They practice meditation."
+  },
+  {
+    "name": "The Logic of The Cog",
+    "description": "Popular in the Vaneer Concord. Followers believe the universe is a complex machine understood through science and reason, viewing faith as a relic of a less-enlightened age."
+  },
+  {
+    "name": "Grak, the Beast-Father",
+    "description": "Primal god of the hunt, instinct, and the wild. Revered by hunters and nomads. Worshipped in the wilderness.",
+    "tenet": "Trust your instincts; they are the whispers of the god"
+  },
+  {
+    "name": "Faith in the Great Wolf",
+    "description": "Worship of the pack leader, god of hunt, loyalty, strength in numbers.",
+    "boon": { "attribute": "Might", "bonus": 1 }
+  },
+  {
+    "name": "Faith in the All-Mother Bear",
+    "description": "Reverence for the protector, goddess of resilience, family, fierce defense.",
+    "boon": { "attribute": "Toughness", "bonus": 1 }
+  },
+  {
+    "name": "Faith in the Silent Stag",
+    "description": "Following the king of the forest, god of stoicism, guidance, natural authority.",
+    "boon": { "attribute": "Presence", "bonus": 1 }
+  },
+  {
+    "name": "Faith in the Trickster Coyote",
+    "description": "Praise for the clever survivor, god of wit, adaptation, bending rules.",
+    "boon": { "attribute": "Finesse", "bonus": 1 }
+  },
+  {
+    "name": "The Law of the Pack",
+    "description": "Belief that individual strength serves group strength, and vice-versa.",
+    "boon": { "attribute": "Empathy", "bonus": 1 }
+  },
+  {
+    "name": "The Long Endurance",
+    "description": "Belief that true victory belongs to the one who refuses to fall.",
+    "boon": { "attribute": "Endurance", "bonus": 1 }
+  },
+  {
+    "name": "The Alpha's Will",
+    "description": "Belief that 'gods' are merely powerful individuals; true authority is earned.",
+    "prerequisite": "STR 10+",
+    "boon": { "attribute": "Might", "bonus": 1 }
+  },
+  {
+    "name": "Social Dynamics",
+    "description": "Study of intricate workings of societies, believing they can be understood and perfected.",
+    "prerequisite": "INT 10+",
+    "boon": { "attribute": "Reasoning", "bonus": 1 }
+  },
+  {
+    "name": "Applied Husbandry",
+    "description": "Belief in improving the world through careful cultivation and breeding, not prayer.",
+    "boon": { "attribute": "Knowledge", "bonus": 1 }
+  },
+  {
+    "name": "The Self-Made Mammal",
+    "description": "No belief in gods, trusting only in one's senses and kin's strength.",
+    "boon": { "attribute": "Intuition", "bonus": 1 }
+  },
+  {
+    "name": "The Grazing Path",
+    "description": "Gods, Dragons are just noise; focus on the present.",
+    "boon": { "attribute": "Stamina", "bonus": 1 }
+  },
+  {
+    "name": "Faith in the Greatwood",
+    "description": "Worship of the ancient forest as a single, slumbering intelligence.",
+    "boon": { "attribute": "Toughness", "bonus": 1 }
+  },
+  {
+    "name": "Faith in the Mycelial Mind",
+    "description": "Belief that all fungi are part of a single, vast, subterranean consciousness.",
+    "boon": { "attribute": "Knowledge", "bonus": 1 }
+  },
+  {
+    "name": "Faith in the Spore-Mother",
+    "description": "Reverence for the goddess of decay, rebirth, and spreading new life.",
+    "boon": { "attribute": "Endurance", "bonus": 1 }
+  },
+  {
+    "name": "Faith in the Sun-Petal",
+    "description": "Praise for the goddess of sunlight, beauty, and vibrant growth.",
+    "boon": { "attribute": "Presence", "bonus": 1 }
+  },
+  {
+    "name": "The Law of Cycles",
+    "description": "Belief that all things must die to feed new life; transformation, not an end.",
+    "prerequisite": "WIS 10+/12+",
+    "boon": { "attribute": "Willpower", "bonus": 1 }
+  },
+  {
+    "name": "Rooted Stillness",
+    "description": "Belief that true power comes from patience, observation, deep roots, not action.",
+    "boon": { "attribute": "Concentration (Skill)", "bonus": 1 }
+  },
+  {
+    "name": "The Silent Growth",
+    "description": "The forest grows, rot spreads, sun shines without divine command.",
+    "boon": { "attribute": "Stamina", "bonus": 1 }
+  },
+  {
+    "name": "Botany",
+    "description": "Study of intricate plant biology, seeing them as complex living machines.",
+    "prerequisite": "INT 10+/12+",
+    "boon": { "attribute": "Medicine (Skill)", "bonus": 1 }
+  },
+  {
+    "name": "Geology",
+    "description": "Study of soil and rock as the world's true foundation.",
+    "boon": { "attribute": "Reasoning", "bonus": 1 }
+  },
+  {
+    "name": "The Logic of Photosynthesis",
+    "description": "Belief in observable life processes, not unseen gods.",
+    "boon": { "attribute": "Endurance", "bonus": 1 }
+  },
+  {
+    "name": "The Patient Bough",
+    "description": "Storms and seasons pass; it is of no concern, we remain.",
+    "boon": { "attribute": "Willpower", "bonus": 1 }
+  },
+  {
+    "name": "The Cult of the Wyrm Ascendant",
+    "description": "A dangerous heresy secretly worshipping the Chaos Dragons as gods of change. They practice forbidden rituals to awaken their masters, operating from hidden cells in major cities and remote ruins."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "The Ancient Civilization",
+    "description": "Eons ago, an ancient, hyper-advanced civilization sought to usurp divine power, leading to the disruption of the Celestial Clockwork.",
+    "era": "Ancient"
+  },
+  {
+    "name": "The Great Shattering",
+    "description": "The cataclysm that resulted from the disruption of the Celestial Clockwork. It unleashed primordial chaos, breaking the laws of physics, magic, and time. Landmasses were torn asunder, creating the treacherous Shatterlands. The backlash also created Dragonstone fragments.",
+    "era": "The Great Shattering"
+  },
+  {
+    "name": "The Rise of New Species",
+    "description": "In the wake of this destruction, one of the last gods nurtured small creatures, whose descendants evolved into hundreds of sentient species, forming new societies.",
+    "era": "Age of Rediscovery"
+  }
+]

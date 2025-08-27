@@ -14,6 +14,9 @@ import {
   CriticalHits,
   DeathRules,
   EnvironmentRules,
+  Faction,
+  Belief,
+  HistoricalEvent,
 } from '@dungeon-maister/data-models';
 import { Location } from './location.models';
 
@@ -38,13 +41,37 @@ export class DataAccessService {
   // --- Location Data ---
   private locations: Map<string, Location> = new Map();
 
-  constructor() {
+  // --- Lore Data ---
+  private factions: Faction[] = [];
+  private beliefs: Belief[] = [];
+  private history: HistoricalEvent[] = [];
+  private assetPath: string;
+
+  constructor(assetPath?: string) {
+    this.assetPath = assetPath || path.join(__dirname, 'assets');
     this.loadGameRulesData();
     this.loadCharacterCreationData();
+    this.loadLoreData();
+  }
+
+  private loadLoreData() {
+    const dataPath = path.join(this.assetPath, 'lore');
+    console.log(`[DataAccessService] Loading lore data from: ${dataPath}`);
+
+    try {
+      const commonwealths = this.loadDataFile<Faction[]>(dataPath, 'commonwealths.json');
+      const unalignedPeoples = this.loadDataFile<Faction[]>(dataPath, 'unaligned_peoples.json');
+      this.factions = [...commonwealths, ...unalignedPeoples];
+      this.beliefs = this.loadDataFile<Belief[]>(dataPath, 'beliefs.json');
+      this.history = this.loadDataFile<HistoricalEvent[]>(dataPath, 'history.json');
+      console.log('[DataAccessService] All lore data loaded successfully.');
+    } catch (error) {
+      console.error('[DataAccessService] CRITICAL: Failed to load lore data.', error);
+    }
   }
 
   private loadGameRulesData() {
-    const dataPath = path.join(__dirname, 'assets/rules');
+    const dataPath = path.join(this.assetPath, 'rules');
     console.log(`[DataAccessService] Loading game rules data from: ${dataPath}`);
 
     try {
@@ -60,7 +87,7 @@ export class DataAccessService {
   }
 
   private loadCharacterCreationData() {
-    const dataPath = path.join(__dirname, 'assets/character-creation');
+    const dataPath = path.join(this.assetPath, 'character-creation');
     console.log(`[DataAccessService] Loading character creation data from: ${dataPath}`);
 
     try {
@@ -104,6 +131,11 @@ export class DataAccessService {
   getCareers = () => this.careers;
   getDevotions = () => this.devotions;
   getBirthSigns = () => this.birthSigns;
+
+  // --- Getters for Lore Data ---
+  getFactions = () => this.factions;
+  getBeliefs = () => this.beliefs;
+  getHistory = () => this.history;
 
 
   // --- Existing Location Blueprint Logic ---
