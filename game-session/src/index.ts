@@ -1,3 +1,4 @@
 export * from './lib/game-session.module';
 export * from './lib/world-bootstrapper.service';
 export * from './lib/world-state.service';
+export * from './lib/game-state.service';
