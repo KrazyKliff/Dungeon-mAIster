@@ -25,26 +25,39 @@ import {
   getMapParametersFromAI,
   generateMap,
 } from '@dungeon-maister/rule-engine';
-import { GameGateway } from '../game/game.gateway';
+import { GameStateService } from '@dungeon-maister/game-session';
 
 @WebSocketGateway({ cors: { origin: '*' } })
 export class CharacterCreationGateway {
   @WebSocketServer()
   server: Server;
 
-  private charactersInProgress = new Map<string, Character>();
+  private charactersInProgress = new Map<string, Map<string, Character>>();
+  private completedCharacters = new Map<string, Set<string>>();
 
-  constructor(private readonly dataAccess: DataAccessService) {}
+  constructor(
+    private readonly dataAccess: DataAccessService,
+    private readonly gameStateService: GameStateService
+  ) {}
 
   @SubscribeMessage(CC_EVENT_START)
   handleStart(
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: CCStartPayload
   ): void {
-    const character = createBaselineCharacter(payload.characterId, payload.name);
-    this.charactersInProgress.set(payload.characterId, character);
+    const { sessionId, characterId, name } = payload;
+    client.join(sessionId);
 
-    client.emit(CC_EVENT_CHARACTER_UPDATED, { character });
+    let session = this.charactersInProgress.get(sessionId);
+    if (!session) {
+      session = new Map<string, Character>();
+      this.charactersInProgress.set(sessionId, session);
+    }
+
+    const character = createBaselineCharacter(characterId, name);
+    session.set(characterId, character);
+
+    this.server.to(sessionId).emit(CC_EVENT_CHARACTER_UPDATED, { character });
     client.emit(CC_EVENT_READY_FOR_NEXT_STEP, { nextStep: 'kingdom' });
   }
 
@@ -71,74 +84,83 @@ export class CharacterCreationGateway {
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: CCSelectChoicePayload
   ): void {
-    let character = this.charactersInProgress.get(payload.characterId);
+    const { sessionId, characterId, choiceId, step } = payload;
+    const session = this.charactersInProgress.get(sessionId);
+    if (!session) { return; }
+    let character = session.get(characterId);
     if (!character) { return; }
 
     let nextStep: ChoiceStep | 'complete' = 'complete';
 
-    switch (payload.step) {
+    switch (step) {
       case 'kingdom':
         nextStep = 'species_feature';
         break;
       case 'species_feature':
-        const feature = this.dataAccess.getMammalFeatures().find(f => f.id === payload.choiceId);
+        const feature = this.dataAccess.getMammalFeatures().find(f => f.id === choiceId);
         if (feature) character = applySpeciesFeature(character, feature);
         nextStep = 'origin';
         break;
       case 'origin':
-        const origin = this.dataAccess.getOrigins().find(o => o.id === payload.choiceId);
+        const origin = this.dataAccess.getOrigins().find(o => o.id === choiceId);
         if (origin) character = applyOrigin(character, origin);
         nextStep = 'life_event';
         break;
       case 'life_event':
-        const lifeEvent = this.dataAccess.getLifeEvents().find(le => le.id === payload.choiceId);
+        const lifeEvent = this.dataAccess.getLifeEvents().find(le => le.id === choiceId);
         if (lifeEvent) character = applyLifeEvent(character, lifeEvent);
         nextStep = 'career';
         break;
       case 'career':
-        const career = this.dataAccess.getCareers().find(c => c.id === payload.choiceId);
+        const career = this.dataAccess.getCareers().find(c => c.id === choiceId);
         if (career) character = applyCareer(character, career);
         nextStep = 'devotion';
         break;
       case 'devotion':
-         const devotion = this.dataAccess.getDevotions().find(d => d.id === payload.choiceId);
+         const devotion = this.dataAccess.getDevotions().find(d => d.id === choiceId);
          if (devotion) character = applyDevotion(character, devotion);
          nextStep = 'complete';
          break;
     }
 
-    this.charactersInProgress.set(payload.characterId, character);
-    client.emit(CC_EVENT_CHARACTER_UPDATED, { character });
+    session.set(characterId, character);
+    this.server.to(sessionId).emit(CC_EVENT_CHARACTER_UPDATED, { character });
     client.emit(CC_EVENT_READY_FOR_NEXT_STEP, { nextStep });
+
+    if (nextStep === 'complete') {
+      this.handleCharacterCompletion(sessionId, characterId);
+    }
   }
 
-  @SubscribeMessage(CC_EVENT_FINALIZE)
-  async handleFinalize(
-    @ConnectedSocket() client: Socket,
-    @MessageBody() payload: CCFinalizePayload
-  ): Promise<void> {
-    const character = this.charactersInProgress.get(payload.characterId);
-    if (!character) { return; }
+  private handleCharacterCompletion(sessionId: string, characterId: string): void {
+    let completed = this.completedCharacters.get(sessionId);
+    if (!completed) {
+      completed = new Set<string>();
+      this.completedCharacters.set(sessionId, completed);
+    }
+    completed.add(characterId);
 
-    console.log('[CharCreate]: Character finalized. Initializing new game state...');
-    const mapParams = await getMapParametersFromAI('a forgotten goblin outpost');
-    const { map, props } = generateMap(20, 15, mapParams);
-    let startPos = { x: 0, y: 0 };
-    for (let y = 0; y < map.length; y++) { const x = map[y].indexOf(0); if (x > -1) { startPos = { x, y }; break; } }
+    const session = this.charactersInProgress.get(sessionId);
+    // Assuming a 3-player game
+    if (session && completed.size === 3 && session.size === 3) {
+      this._finalizeSession(sessionId);
+    }
+  }
 
-    const newGameState: GameState = {
-      map,
-      props,
-      entities: [{ id: character.id, name: character.name, x: startPos.x, y: startPos.y, isPlayer: true }],
-      characters: { [character.id]: character },
-      selectedEntityId: null,
-    };
+  private _finalizeSession(sessionId: string): void {
+    const session = this.charactersInProgress.get(sessionId);
+    if (!session) { return; }
 
-    GameGateway.updateGameState(newGameState);
-    this.charactersInProgress.delete(payload.characterId);
-    console.log('[CharCreate]: Game state initialized.');
+    const characters = Array.from(session.values());
+    console.log(`[CharCreate]: All characters finalized for session ${sessionId}. Initializing new game state...`);
 
-    client.emit(CC_EVENT_COMPLETE, { character });
-    this.server.emit('gameState', newGameState);
+    const newGameState = this.gameStateService.createInitialGameState(characters);
+
+    this.charactersInProgress.delete(sessionId);
+    this.completedCharacters.delete(sessionId);
+    console.log(`[CharCreate]: Game state for session ${sessionId} initialized.`);
+
+    this.server.to(sessionId).emit(CC_EVENT_COMPLETE, { characters });
+    this.server.to(sessionId).emit('gameState', newGameState);
   }
 }

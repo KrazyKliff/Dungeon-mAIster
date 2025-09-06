@@ -16,12 +16,14 @@ export const CC_EVENT_COMPLETE = '[Character Creation] Complete';
 // --- Client -> Server Payloads ---
 
 export interface CCStartPayload {
+  sessionId: string;
   characterId: string;
   name: string;
 }
 
 export type ChoiceStep = 'kingdom' | 'species_feature' | 'origin' | 'life_event' | 'career' | 'devotion' | 'birth_sign';
 export interface CCGetChoicesPayload {
+  sessionId: string;
   step: ChoiceStep;
   // Some choice lists might depend on previous choices, e.g., Devotion depends on Kingdom.
   context?: {
@@ -30,12 +32,14 @@ export interface CCGetChoicesPayload {
 }
 
 export interface CCSelectChoicePayload {
+  sessionId: string;
   characterId: string;
   step: ChoiceStep;
   choiceId: string;
 }
 
 export interface CCFinalizePayload {
+  sessionId: string;
   characterId: string;
 }
 
@@ -57,5 +61,5 @@ export interface CCReadyForNextStepPayload {
 }
 
 export interface CCCompletePayload {
-  character: Character;
+  characters: Character[];
 }

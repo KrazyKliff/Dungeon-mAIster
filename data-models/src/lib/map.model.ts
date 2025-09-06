@@ -7,6 +7,8 @@ export interface MapConfig { width: number; height: number; maxTunnels: number; 
 export interface MapParameters { propDensity: 'low' | 'medium' | 'high'; propThemes: string[]; enemyCount: number; }
 export interface GameState {
   map: MapData;
+  mapName: string;
+  mapDescription: string;
   entities: GameEntity[];
   props: MapProp[];
   characters: Record<string, Character>;

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DataAccessService } from '@dungeon-maister/core-data';
-import { GameState } from '@dungeon-maister/data-models';
+import { GameState, MapParameters } from '@dungeon-maister/data-models';
 import { WorldStateService } from '@dungeon-maister/game-session';
 import { askAI } from './llm.service';
 
@@ -14,6 +14,16 @@ export class LlmOrchestratorService {
   public async generateNarrative(gameState: GameState, command: string): Promise<string> {
     const prompt = this.buildPrompt(gameState, command);
     return await askAI(prompt);
+  }
+
+  public async generateMapParameters(): Promise<MapParameters> {
+    // TODO: Implement this properly
+    console.log('TODO: Implement generateMapParameters properly');
+    return {
+      propDensity: 'medium',
+      propThemes: ['ancient', 'ruined'],
+      enemyCount: 5,
+    };
   }
 
   private buildPrompt(gameState: GameState, command: string): string {
@@ -41,10 +51,10 @@ The world is called The Shattered World. Here is some information about the worl
     });
 
     prompt += '\n--- Current Game State ---\n';
-    prompt += `The players are in a location called ${gameState.map.name}. ${gameState.map.description}\n`;
+    prompt += `The players are in a location called ${gameState.mapName}. ${gameState.mapDescription}\n`;
     prompt += `The following characters are in the scene: ${Object.values(gameState.characters).map(c => c.name).join(', ')}\n`;
     prompt += `A player has just issued the following command: "${command}"\n`;
-    prompt += `\nGenerate a narrative response from the Game Master. The response should be engaging and move the story forward.`;
+    prompt += `\nGenerate a. narrative response from the Game Master. The response should be engaging and move the story forward.`;
 
     return prompt;
   }

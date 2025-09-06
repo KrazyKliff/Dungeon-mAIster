@@ -6,11 +6,16 @@
     "@react-native/metro-config": "*",
     "@react-navigation/bottom-tabs": "*",
     "@react-navigation/native": "*",
+    "metro-config": "*",
     "react": "*",
     "react-native": "*",
+    "react-native-get-random-values": "^1.11.0",
     "react-native-safe-area-context": "*",
     "react-native-screens": "*",
     "react-native-svg": "*",
-    "metro-config": "*"
+    "uuid": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^10.0.0"
   }
 }
