@@ -24,6 +24,11 @@
             "glob": "**/*.json",
             "input": "core-data/src/lib/lore",
             "output": "assets/lore"
+          },
+          {
+            "glob": "**/*.json",
+            "input": "core-data/src/lib/rules",
+            "output": "assets/rules"
           }
         ],
         "generatePackageJson": true,

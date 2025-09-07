@@ -1,13 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { DataAccessService, Location } from '@dungeon-maister/core-data';
+import { Location, updateLocationBlueprint } from '@dungeon-maister/core-data';
 import { LlmOrchestratorService } from '@dungeon-maister/llm-orchestrator';
 
 @Injectable()
 export class WorldBootstrapperService {
-  constructor(
-    private readonly llmOrchestrator: LlmOrchestratorService,
-    private readonly dataAccess: DataAccessService
-  ) {}
+  constructor(private readonly llmOrchestrator: LlmOrchestratorService) {}
 
   async bootstrapWorldLocations(): Promise<void> {
     console.log(
@@ -28,7 +25,7 @@ export class WorldBootstrapperService {
       // const propParams =
       //   await this.llmOrchestrator.generateMapPropParameters(location.biome);
       const blueprint = { mapParams };
-      this.dataAccess.updateLocationBlueprint(location.id, blueprint);
+      updateLocationBlueprint(location.id, blueprint);
     }
     console.log(
       '--- WORLD BOOTSTRAPPER: World Weaving complete. Blueprints are cached. ---'

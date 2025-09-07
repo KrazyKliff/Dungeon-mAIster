@@ -1,2 +1,30 @@
-
-> nx run backend:serve:development
+[DataStore] Successfully read skills.json.
+[DataStore] Successfully read combat.json.
+[DataStore] Successfully read critical-hits.json.
+[DataStore] Successfully read death.json.
+[DataStore] Successfully read environment.json.
+[DataStore] Successfully read kingdoms.json.
+[DataStore] Successfully read mammal-features.json.
+[DataStore] Successfully read origins.json.
+[DataStore] Successfully read life-events.json.
+[DataStore] Successfully read careers.json.
+[DataStore] Successfully read devotions.json.
+[DataStore] Successfully read birth-signs.json.
+[DataStore] Successfully read commonwealths.json.
+[DataStore] Successfully read unaligned_peoples.json.
+[DataStore] Successfully read beliefs.json.
+[DataStore] Successfully read history.json.
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[WorldStateService] World state initialized.
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +12ms[39m
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCoreDataModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGameSessionModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mCharacterCreationGateway subscribed to the "[Character Creation] Start" message[39m[38;5;3m +10ms[39m
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mCharacterCreationGateway subscribed to the "[Character Creation] Get Choices" message[39m[38;5;3m +0ms[39m
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mCharacterCreationGateway subscribed to the "[Character Creation] Select Choice" message[39m[38;5;3m +0ms[39m
+[GameGateway] Initialized
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mGameGateway subscribed to the "selectEntity" message[39m[38;5;3m +2ms[39m
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mGameGateway subscribed to the "move" message[39m[38;5;3m +0ms[39m
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mGameGateway subscribed to the "command" message[39m[38;5;3m +0ms[39m
+[32m[Nest] 19803  - [39m09/07/2025, 12:34:41 AM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +5ms[39m
+[server]: NestJS application is running on port 3000
