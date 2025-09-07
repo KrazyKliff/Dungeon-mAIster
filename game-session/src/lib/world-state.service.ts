@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { DataAccessService } from '@dungeon-maister/core-data';
+import { getFactions } from '@dungeon-maister/core-data';
 import { WorldState, FactionInfluence } from '@dungeon-maister/data-models';
 
 @Injectable()
 export class WorldStateService {
   private worldState: WorldState;
 
-  constructor(private readonly dataAccess: DataAccessService) {
+  constructor() {
     this.initialize();
   }
 
   private initialize(): void {
-    const factions = this.dataAccess.getFactions();
+    const factions = getFactions();
     const factionInfluences: FactionInfluence[] = factions.map(faction => ({
       factionId: faction.id,
       influence: 10, // Default influence

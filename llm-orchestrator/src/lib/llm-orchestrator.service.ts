@@ -1,15 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { DataAccessService } from '@dungeon-maister/core-data';
+import { getFactions, getBeliefs, getHistory } from '@dungeon-maister/core-data';
 import { GameState, MapParameters } from '@dungeon-maister/data-models';
 import { WorldStateService } from '@dungeon-maister/game-session';
 import { askAI } from './llm.service';
 
 @Injectable()
 export class LlmOrchestratorService {
-  constructor(
-    private readonly dataAccess: DataAccessService,
-    private readonly worldState: WorldStateService
-  ) {}
+  constructor(private readonly worldState: WorldStateService) {}
 
   public async generateNarrative(gameState: GameState, command: string): Promise<string> {
     const prompt = this.buildPrompt(gameState, command);
@@ -27,9 +24,9 @@ export class LlmOrchestratorService {
   }
 
   private buildPrompt(gameState: GameState, command: string): string {
-    const factions = this.dataAccess.getFactions();
-    const beliefs = this.dataAccess.getBeliefs();
-    const history = this.dataAccess.getHistory();
+    const factions = getFactions();
+    const beliefs = getBeliefs();
+    const history = getHistory();
 
     let prompt = `The following is a scene from a tabletop roleplaying game.
 The world is called The Shattered World. Here is some information about the world:

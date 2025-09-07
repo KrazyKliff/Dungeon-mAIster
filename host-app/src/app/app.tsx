@@ -58,6 +58,14 @@ export function App() {
     socket?.emit('selectEntity', { entityId: newSelectedId });
   };
 
+  const handleStartCombat = () => {
+    socket?.emit('startCombat');
+  };
+
+  const handleNextTurn = () => {
+    socket?.emit('nextTurn');
+  };
+
   return (
     <HostLayoutRoot>
       <LeftPanel>
@@ -73,15 +81,49 @@ export function App() {
           <MenuBar />
           <InfoBar />
         </div>
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '16px' }}>
+        <div
+          style={{
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingTop: '16px',
+            flexDirection: 'column',
+          }}
+        >
           {gameState && gameState.map.length > 0 ? (
-            <MapViewer
-              mapData={gameState.map}
-              entities={gameState.entities}
-              props={gameState.props}
-              selectedEntityId={gameState.selectedEntityId}
-              onEntityClick={handleSelectEntity}
-            />
+            <>
+              <MapViewer
+                mapData={gameState.map}
+                entities={gameState.entities}
+                props={gameState.props}
+                selectedEntityId={gameState.selectedEntityId}
+                onEntityClick={handleSelectEntity}
+              />
+              {gameState.combat?.isActive ? (
+                <div>
+                  <h3>Turn Order</h3>
+                  <ol>
+                    {gameState.combat.order.map((entityId, index) => (
+                      <li
+                        key={entityId}
+                        style={{
+                          fontWeight:
+                            gameState.combat && index === gameState.combat.turn
+                              ? 'bold'
+                              : 'normal',
+                        }}
+                      >
+                        {gameState.characters[entityId]?.name || entityId}
+                      </li>
+                    ))}
+                  </ol>
+                  <button onClick={handleNextTurn}>Next Turn</button>
+                </div>
+              ) : (
+                <button onClick={handleStartCombat}>Start Combat</button>
+              )}
+            </>
           ) : (
             socket && <CharacterCreationWizard socket={socket} />
           )}

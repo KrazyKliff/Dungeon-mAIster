@@ -1,6 +1,14 @@
 import { WebSocketGateway, SubscribeMessage, WebSocketServer, MessageBody, ConnectedSocket } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { DataAccessService } from '@dungeon-maister/core-data';
+import {
+  getKingdoms,
+  getOrigins,
+  getLifeEvents,
+  getCareers,
+  getMammalFeatures,
+  getDevotions,
+  getBirthSigns,
+} from '@dungeon-maister/core-data';
 import {
   Character,
   GameState,
@@ -35,10 +43,7 @@ export class CharacterCreationGateway {
   private charactersInProgress = new Map<string, Map<string, Character>>();
   private completedCharacters = new Map<string, Set<string>>();
 
-  constructor(
-    private readonly dataAccess: DataAccessService,
-    private readonly gameStateService: GameStateService
-  ) {}
+  constructor(private readonly gameStateService: GameStateService) {}
 
   @SubscribeMessage(CC_EVENT_START)
   handleStart(
@@ -68,13 +73,13 @@ export class CharacterCreationGateway {
   ): void {
     let choices = [];
     switch (payload.step) {
-      case 'kingdom': choices = this.dataAccess.getKingdoms(); break;
-      case 'origin': choices = this.dataAccess.getOrigins(); break;
-      case 'life_event': choices = this.dataAccess.getLifeEvents(); break;
-      case 'career': choices = this.dataAccess.getCareers(); break;
-      case 'species_feature': choices = this.dataAccess.getMammalFeatures(); break;
-      case 'devotion': choices = this.dataAccess.getDevotions(); break;
-      case 'birth_sign': choices = this.dataAccess.getBirthSigns(); break;
+      case 'kingdom': choices = getKingdoms(); break;
+      case 'origin': choices = getOrigins(); break;
+      case 'life_event': choices = getLifeEvents(); break;
+      case 'career': choices = getCareers(); break;
+      case 'species_feature': choices = getMammalFeatures(); break;
+      case 'devotion': choices = getDevotions(); break;
+      case 'birth_sign': choices = getBirthSigns(); break;
     }
     client.emit(CC_EVENT_CHOICES_LIST, { step: payload.step, choices });
   }
@@ -97,27 +102,27 @@ export class CharacterCreationGateway {
         nextStep = 'species_feature';
         break;
       case 'species_feature':
-        const feature = this.dataAccess.getMammalFeatures().find(f => f.id === choiceId);
+        const feature = getMammalFeatures().find(f => f.id === choiceId);
         if (feature) character = applySpeciesFeature(character, feature);
         nextStep = 'origin';
         break;
       case 'origin':
-        const origin = this.dataAccess.getOrigins().find(o => o.id === choiceId);
+        const origin = getOrigins().find(o => o.id === choiceId);
         if (origin) character = applyOrigin(character, origin);
         nextStep = 'life_event';
         break;
       case 'life_event':
-        const lifeEvent = this.dataAccess.getLifeEvents().find(le => le.id === choiceId);
+        const lifeEvent = getLifeEvents().find(le => le.id === choiceId);
         if (lifeEvent) character = applyLifeEvent(character, lifeEvent);
         nextStep = 'career';
         break;
       case 'career':
-        const career = this.dataAccess.getCareers().find(c => c.id === choiceId);
+        const career = getCareers().find(c => c.id === choiceId);
         if (career) character = applyCareer(character, career);
         nextStep = 'devotion';
         break;
       case 'devotion':
-         const devotion = this.dataAccess.getDevotions().find(d => d.id === choiceId);
+         const devotion = getDevotions().find(d => d.id === choiceId);
          if (devotion) character = applyDevotion(character, devotion);
          nextStep = 'complete';
          break;
