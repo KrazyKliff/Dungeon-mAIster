@@ -1,0 +1,12 @@
+[
+  {
+    "id": "location_001",
+    "name": "The Rusty Flagon",
+    "description": "A cozy tavern in the heart of the city."
+  },
+  {
+    "id": "location_002",
+    "name": "The Whispering Woods",
+    "description": "A dark and mysterious forest."
+  }
+]

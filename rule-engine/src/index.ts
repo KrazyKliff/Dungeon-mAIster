@@ -3,3 +3,5 @@ export * from './lib/skill-check.service';
 export * from './lib/map-generation.service';
 export * from './lib/movement.service';
 export * from './lib/combat.service';
+export * from './lib/world-event.service';
+export * from './lib/location.service';

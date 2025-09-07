@@ -1,0 +1,20 @@
+[
+  {
+    "id": "event_001",
+    "name": "War of the Factions",
+    "description": "The two most powerful factions are at war!",
+    "trigger": {
+      "factionId": "faction_001",
+      "threshold": 100
+    }
+  },
+  {
+    "id": "event_002",
+    "name": "The Rise of the Undead",
+    "description": "A powerful necromancer has raised an army of the dead.",
+    "trigger": {
+      "factionId": "faction_002",
+      "threshold": 50
+    }
+  }
+]
