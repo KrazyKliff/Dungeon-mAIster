@@ -1,5 +1,6 @@
 import { PrimaryAttribute, SubAttribute, SubAttributeName, PrimaryAttributeName } from './attributes.model';
 import { CharacterSkill } from './skills.model';
+import { Inventory } from './inventory.model';
 
 // The main interface for any character in the game
 export interface Character {
@@ -30,6 +31,6 @@ export interface Character {
   speciesSpeedBonus: number;
   speciesCarryingBonus: number;
 
-  // Inventory (to be defined in more detail later)
-  inventory: unknown[];
+  // Inventory
+  inventory: Inventory;
 }

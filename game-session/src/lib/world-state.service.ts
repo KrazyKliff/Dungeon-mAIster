@@ -9,6 +9,7 @@ import {
   WorldEventService,
   LocationService,
 } from '@dungeon-maister/rule-engine';
+import { Logger } from '@dungeon-maister/shared';
 
 @Injectable()
 export class WorldStateService {
@@ -18,10 +19,7 @@ export class WorldStateService {
     private readonly worldEventService: WorldEventService,
     private readonly locationService: LocationService
   ) {
-    this.initialize();
-  }
-
-  private initialize(): void {
+    Logger.info('[WorldStateService] Constructor called');
     const factions = getFactions();
     const factionInfluences: FactionInfluence[] = factions.map((faction) => ({
       factionId: faction.id,
@@ -35,7 +33,7 @@ export class WorldStateService {
       locations,
     };
 
-    console.log('[WorldStateService] World state initialized.');
+    Logger.info('[WorldStateService] World state initialized.');
   }
 
   getFactionInfluence(factionId: string): number | undefined {
@@ -50,7 +48,7 @@ export class WorldStateService {
     );
     if (factionInfluence) {
       factionInfluence.influence += change;
-      console.log(
+      Logger.info(
         `[WorldStateService] Influence of ${factionId} updated to ${factionInfluence.influence}`
       );
       this.checkForEvents(factionId, factionInfluence.influence);
@@ -69,7 +67,7 @@ export class WorldStateService {
         )
       ) {
         this.worldState.activeEvents.push(event);
-        console.log(
+        Logger.info(
           `[WorldStateService] New world event triggered: ${event.name}`
         );
       }

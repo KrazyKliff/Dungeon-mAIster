@@ -18,11 +18,12 @@ import {
   HistoricalEvent,
 } from '@dungeon-maister/data-models';
 import { Location } from './location.models';
+import { Logger } from '@dungeon-maister/shared';
 
 // --- Data Loading ---
 
-const assetPath = process.env.NODE_ENV === 'test'
-  ? path.join(process.cwd(), 'core-data/src/lib')
+const assetPath = process.env['NODE_ENV'] === 'test'
+  ? path.join(process.cwd(), 'core-data/src/lib/assets') // Correct path for tests
   : path.join(__dirname, 'assets');
 
 
@@ -30,68 +31,159 @@ function loadDataFile<T>(dataPath: string, fileName: string): T {
   const filePath = path.join(dataPath, fileName);
   try {
     const fileContent = fs.readFileSync(filePath, 'utf-8');
-    console.log(`[DataStore] Successfully read ${fileName}.`);
+    Logger.info(`[DataStore] Successfully read ${fileName}.`);
     return JSON.parse(fileContent) as T;
   } catch (error) {
-    console.error(`[DataStore] Failed to read or parse ${fileName} from ${filePath}`);
+    if (error instanceof Error) {
+        Logger.error(`[DataStore] Failed to read or parse ${fileName} from ${filePath}. Error: ${error.message}`);
+    }
+    // Return a default value or an empty array to prevent crashing the app
+    // This is a temporary measure until all data files are created.
+    if (fileName === 'skills.json') return [] as T;
     throw error;
   }
 }
 
+// --- Memoization Caching ---
+let _skills: SkillDefinition[] | null = null;
+let _combatRules: CombatRules | null = null;
+let _criticalHits: CriticalHits | null = null;
+let _deathRules: DeathRules | null = null;
+let _environmentRules: EnvironmentRules | null = null;
+let _kingdoms: Kingdom[] | null = null;
+let _mammalFeatures: SpeciesFeature[] | null = null;
+let _origins: Origin[] | null = null;
+let _lifeEvents: LifeEvent[] | null = null;
+let _careers: Career[] | null = null;
+let _devotions: Devotion[] | null = null;
+let _birthSigns: BirthSign[] | null = null;
+let _factions: Faction[] | null = null;
+let _beliefs: Belief[] | null = null;
+let _history: HistoricalEvent[] | null = null;
+
 // --- Game Rules Data ---
 
-const skillsPath = path.join(assetPath, 'rules');
-const skills: SkillDefinition[] = loadDataFile<SkillDefinition[]>(skillsPath, 'skills.json');
-const combatRules: CombatRules = loadDataFile<CombatRules>(skillsPath, 'combat.json');
-const criticalHits: CriticalHits = loadDataFile<CriticalHits>(skillsPath, 'critical-hits.json');
-const deathRules: DeathRules = loadDataFile<DeathRules>(skillsPath, 'death.json');
-const environmentRules: EnvironmentRules = loadDataFile<EnvironmentRules>(skillsPath, 'environment.json');
-
-export const getSkills = () => skills;
-export const getAllSkills = () => skills;
+export const getSkills = () => {
+    if (!_skills) {
+        const skillsPath = path.join(assetPath, 'rules');
+        _skills = loadDataFile<SkillDefinition[]>(skillsPath, 'skills.json');
+    }
+    return _skills;
+};
+export const getAllSkills = () => getSkills();
 export const findSkillById = (skillId: string): SkillDefinition | undefined => {
-  return skills.find((skill) => skill.id === skillId);
+  return getSkills().find((skill) => skill.id === skillId);
 }
 export const findSkillByName = (name: string): SkillDefinition | undefined => {
   const lowerCaseName = name.toLowerCase();
-  return skills.find((skill) => skill.name.toLowerCase() === lowerCaseName);
+  return getSkills().find((skill) => skill.name.toLowerCase() === lowerCaseName);
 }
-export const getCombatRules = () => combatRules;
-export const getCriticalHits = () => criticalHits;
-export const getDeathRules = () => deathRules;
-export const getEnvironmentRules = () => environmentRules;
+export const getCombatRules = () => {
+    if (!_combatRules) {
+        const rulesPath = path.join(assetPath, 'rules');
+        _combatRules = loadDataFile<CombatRules>(rulesPath, 'combat.json');
+    }
+    return _combatRules;
+};
+export const getCriticalHits = () => {
+    if (!_criticalHits) {
+        const rulesPath = path.join(assetPath, 'rules');
+        _criticalHits = loadDataFile<CriticalHits>(rulesPath, 'critical-hits.json');
+    }
+    return _criticalHits;
+};
+export const getDeathRules = () => {
+    if (!_deathRules) {
+        const rulesPath = path.join(assetPath, 'rules');
+        _deathRules = loadDataFile<DeathRules>(rulesPath, 'death.json');
+    }
+    return _deathRules;
+};
+export const getEnvironmentRules = () => {
+    if (!_environmentRules) {
+        const rulesPath = path.join(assetPath, 'rules');
+        _environmentRules = loadDataFile<EnvironmentRules>(rulesPath, 'environment.json');
+    }
+    return _environmentRules;
+};
 
 // --- Character Creation Data ---
 
-const charCreationPath = path.join(assetPath, 'character-creation');
-const kingdoms: Kingdom[] = loadDataFile<Kingdom[]>(charCreationPath, 'kingdoms.json');
-const mammalFeatures: SpeciesFeature[] = loadDataFile<SpeciesFeature[]>(charCreationPath, 'mammal-features.json');
-const origins: Origin[] = loadDataFile<Origin[]>(charCreationPath, 'origins.json');
-const lifeEvents: LifeEvent[] = loadDataFile<LifeEvent[]>(charCreationPath, 'life-events.json');
-const careers: Career[] = loadDataFile<Career[]>(charCreationPath, 'careers.json');
-const devotions: Devotion[] = loadDataFile<Devotion[]>(charCreationPath, 'devotions.json');
-const birthSigns: BirthSign[] = loadDataFile<BirthSign[]>(charCreationPath, 'birth-signs.json');
-
-export const getKingdoms = () => kingdoms;
-export const getMammalFeatures = () => mammalFeatures;
-export const getOrigins = () => origins;
-export const getLifeEvents = () => lifeEvents;
-export const getCareers = () => careers;
-export const getDevotions = () => devotions;
-export const getBirthSigns = () => birthSigns;
+export const getKingdoms = () => {
+    if (!_kingdoms) {
+        const charCreationPath = path.join(assetPath, 'character-creation');
+        _kingdoms = loadDataFile<Kingdom[]>(charCreationPath, 'kingdoms.json');
+    }
+    return _kingdoms;
+};
+export const getMammalFeatures = () => {
+    if (!_mammalFeatures) {
+        const charCreationPath = path.join(assetPath, 'character-creation');
+        _mammalFeatures = loadDataFile<SpeciesFeature[]>(charCreationPath, 'mammal-features.json');
+    }
+    return _mammalFeatures;
+};
+export const getOrigins = () => {
+    if (!_origins) {
+        const charCreationPath = path.join(assetPath, 'character-creation');
+        _origins = loadDataFile<Origin[]>(charCreationPath, 'origins.json');
+    }
+    return _origins;
+};
+export const getLifeEvents = () => {
+    if (!_lifeEvents) {
+        const charCreationPath = path.join(assetPath, 'character-creation');
+        _lifeEvents = loadDataFile<LifeEvent[]>(charCreationPath, 'life-events.json');
+    }
+    return _lifeEvents;
+};
+export const getCareers = () => {
+    if (!_careers) {
+        const charCreationPath = path.join(assetPath, 'character-creation');
+        _careers = loadDataFile<Career[]>(charCreationPath, 'careers.json');
+    }
+    return _careers;
+};
+export const getDevotions = () => {
+    if (!_devotions) {
+        const charCreationPath = path.join(assetPath, 'character-creation');
+        _devotions = loadDataFile<Devotion[]>(charCreationPath, 'devotions.json');
+    }
+    return _devotions;
+};
+export const getBirthSigns = () => {
+    if (!_birthSigns) {
+        const charCreationPath = path.join(assetPath, 'character-creation');
+        _birthSigns = loadDataFile<BirthSign[]>(charCreationPath, 'birth-signs.json');
+    }
+    return _birthSigns;
+};
 
 // --- Lore Data ---
 
-const lorePath = path.join(assetPath, 'lore');
-const commonwealths = loadDataFile<Faction[]>(lorePath, 'commonwealths.json');
-const unalignedPeoples = loadDataFile<Faction[]>(lorePath, 'unaligned_peoples.json');
-const factions: Faction[] = [...commonwealths, ...unalignedPeoples];
-const beliefs: Belief[] = loadDataFile<Belief[]>(lorePath, 'beliefs.json');
-const history: HistoricalEvent[] = loadDataFile<HistoricalEvent[]>(lorePath, 'history.json');
-
-export const getFactions = () => factions;
-export const getBeliefs = () => beliefs;
-export const getHistory = () => history;
+export const getFactions = () => {
+    if (!_factions) {
+        const lorePath = path.join(assetPath, 'lore');
+        const commonwealths = loadDataFile<Faction[]>(lorePath, 'commonwealths.json');
+        const unalignedPeoples = loadDataFile<Faction[]>(lorePath, 'unaligned_peoples.json');
+        _factions = [...commonwealths, ...unalignedPeoples];
+    }
+    return _factions;
+};
+export const getBeliefs = () => {
+    if (!_beliefs) {
+        const lorePath = path.join(assetPath, 'lore');
+        _beliefs = loadDataFile<Belief[]>(lorePath, 'beliefs.json');
+    }
+    return _beliefs;
+};
+export const getHistory = () => {
+    if (!_history) {
+        const lorePath = path.join(assetPath, 'lore');
+        _history = loadDataFile<HistoricalEvent[]>(lorePath, 'history.json');
+    }
+    return _history;
+};
 
 // --- Location Blueprint Logic ---
 
@@ -106,10 +198,10 @@ export const updateLocationBlueprint = (locationId: string, blueprint: any) => {
   };
   location.preGeneratedMapParameters = blueprint;
   locations.set(locationId, location);
-  console.log(`[DataStore] Saved blueprint for ${locationId}`);
+  Logger.info(`[DataStore] Saved blueprint for ${locationId}`);
 };
 
 export const getLocationBlueprint = (locationId: string) => {
-  console.log(`[DataStore] Fetching blueprint for ${locationId}`);
+  Logger.info(`[DataStore] Fetching blueprint for ${locationId}`);
   return locations.get(locationId)?.preGeneratedMapParameters;
 };

@@ -1,4 +1,4 @@
-import { MapParameters } from '@dungeon-maister/llm-orchestrator';
+import { MapParameters } from '@dungeon-maister/data-models';
 
 export interface Location {
   id: string;

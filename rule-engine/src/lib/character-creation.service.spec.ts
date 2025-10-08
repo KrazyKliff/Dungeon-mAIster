@@ -14,6 +14,7 @@ describe('createBaselineCharacter', () => {
     expect(newCharacter.hp.max).toBe(9); // 10 + (getSubAttributeModifier(8) * 1) + 0
     expect(newCharacter.defense).toBe(9); // 10 + getSubAttributeModifier(8)
     expect(newCharacter.carryingCapacity).toBe(40); // 8 * 5 + 0
+    expect(newCharacter.inventory.items).toHaveLength(0); // A new character has an empty inventory
   });
 });
 
@@ -87,8 +88,8 @@ describe('Life Path Functions', () => {
     
     // Assert
     expect(updatedCharacter.subAttributes['Constitution'].score).toBe(9); // 8 + 1
-    expect(updatedCharacter.inventory).toHaveLength(3);
-    expect(updatedCharacter.inventory[0]).toBe('Uniform');
+    expect(updatedCharacter.inventory.items).toHaveLength(3);
+    expect(updatedCharacter.inventory.items.some(i => i.name === 'Uniform')).toBe(true);
   });
 
   it('should correctly accumulate bonuses from multiple life path choices', () => {
@@ -114,7 +115,7 @@ describe('Life Path Functions', () => {
     // Assert
     expect(updatedCharacter.subAttributes['Brute Force'].score).toBe(11); // 8 + 2 + 1
     expect(updatedCharacter.skills).toHaveLength(6);
-    expect(updatedCharacter.inventory).toHaveLength(1);
+    expect(updatedCharacter.inventory.items).toHaveLength(1);
     // Check derived stat based on final Brute Force score
     expect(updatedCharacter.carryingCapacity).toBe(55); // 11 * 5 + 0
   });

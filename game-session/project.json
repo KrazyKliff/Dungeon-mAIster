@@ -1,0 +1,22 @@
+{
+  "name": "game-session",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "game-session/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/game-session",
+        "main": "game-session/src/index.ts",
+        "tsConfig": "game-session/tsconfig.lib.json",
+        "assets": ["game-session/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

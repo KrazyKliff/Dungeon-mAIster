@@ -5,3 +5,6 @@ export * from './lib/movement.service';
 export * from './lib/combat.service';
 export * from './lib/world-event.service';
 export * from './lib/location.service';
+export * from './lib/inventory.service';
+export * from './lib/ability.service';
+export * from './lib/rule-engine.module';

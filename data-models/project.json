@@ -6,6 +6,16 @@
   "tags": [],
   "// targets": "to see all targets run: nx show project data-models --web",
   "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/data-models",
+        "main": "data-models/src/index.ts",
+        "tsConfig": "data-models/tsconfig.lib.json",
+        "assets": ["data-models/*.md"]
+      }
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/data-models"],

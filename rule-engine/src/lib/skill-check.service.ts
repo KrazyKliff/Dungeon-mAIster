@@ -1,4 +1,5 @@
 import { Character } from '@dungeon-maister/data-models';
+import { Logger } from '@dungeon-maister/shared';
 
 /**
  * Performs a d20 skill check against a DC.
@@ -10,7 +11,7 @@ export function performSkillCheck(character: Character, skillId: string, dc: num
   // In the future, we will add character skill ranks and attribute modifiers here.
   const total = roll; 
   
-  console.log(`- Player rolled a ${roll}. DC was ${dc}.`);
+  Logger.debug(`Player rolled a ${roll}. DC was ${dc}.`);
   
   return total >= dc;
 }

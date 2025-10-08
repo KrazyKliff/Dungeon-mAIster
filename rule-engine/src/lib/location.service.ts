@@ -5,13 +5,16 @@ import * as path from 'path';
 
 @Injectable()
 export class LocationService {
-  constructor(private readonly locations: Location[]) {}
+  constructor(private readonly locations: Location[]) {
+    console.log('[LocationService] Constructor called with locations:', this.locations?.length || 0);
+  }
 
   public getLocation(id: string): Location | undefined {
     return this.locations.find(location => location.id === id);
   }
 
   public getAllLocations(): Location[] {
+    console.log('[LocationService] getAllLocations called, returning:', this.locations?.length || 0, 'locations');
     return this.locations;
   }
 }

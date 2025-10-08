@@ -1,0 +1,13 @@
+{
+  "name": "@dungeon-maister/shared",
+  "version": "0.0.1",
+  "private": true,
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@nestjs/common": "^11.1.6",
+    "joi": "^18.0.1",
+    "tslib": "^2.3.0"
+  }
+}

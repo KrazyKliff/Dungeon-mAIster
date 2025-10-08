@@ -8,7 +8,9 @@ import {
   Devotion,
   SpeciesFeature,
   BirthSign,
+  Item,
 } from '@dungeon-maister/data-models';
+import { InventoryService } from './inventory.service';
 
 /** Helper to calculate a sub-attribute's modifier. */
 function getSubAttributeModifier(score: number): number {
@@ -76,12 +78,12 @@ export function createBaselineCharacter(id: string, name: string): Character {
     INS: { name: 'INS', score: 0, modifier: 0 }, PRE: { name: 'PRE', score: 0, modifier: 0 },
   };
   
-  let character: Character = {
+  const character: Character = {
     id, name, subAttributes, primaryAttributes,
     skills: [], level: 1, hp: { max: 0, current: 0 }, sp: { max: 0, current: 0 },
     ep: { max: 0, current: 0 }, defense: 0, movementSpeed: 0, initiative: 0, carryingCapacity: 0,
     speciesHpBonus: 0, speciesSpBonus: 0, speciesEpBonus: 0, speciesSpeedBonus: 0, speciesCarryingBonus: 0,
-    inventory: [],
+    inventory: InventoryService.createEmptyInventory(),
   };
 
   return recalculateDerivedStats(character);
@@ -128,7 +130,14 @@ export function applyCareer(character: Character, career: Career): Character {
         character.subAttributes[mod.subAttribute].score += mod.value;
     });
     career.skillProficiencies.forEach(skillId => addSkill(character, skillId));
-    career.startingGear.forEach(item => character.inventory.push(item));
+    career.startingGear.forEach(itemName => {
+      const newItem: Item = {
+        id: itemName.toLowerCase().replace(/\s/g, '_'),
+        name: itemName,
+        description: 'Starting equipment.',
+      };
+      character.inventory.items.push(newItem);
+    });
     return recalculateDerivedStats(character);
 }
 

@@ -121,7 +121,7 @@ export const CharacterCreationScreen = ({ socket }: CharacterCreationScreenProps
                 <View style={styles.choiceItem}>
                   <Button title={item.name} onPress={() => handleSelectChoice(item.id)} color={darkTheme.colors.primary} />
                   <Text style={styles.description}>{item.description}</Text>
-                </V>
+                </View>
               )}
             />
           </View>

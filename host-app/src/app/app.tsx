@@ -16,6 +16,30 @@ import { TechnicalLog } from './components/TechnicalLog';
 import { MenuBar } from './components/MenuBar';
 import { InfoBar } from './components/InfoBar';
 
+const ErrorBanner = ({ message, onClose }) => (
+  <div style={{
+    position: 'fixed',
+    bottom: '20px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    backgroundColor: '#D32F2F',
+    color: 'white',
+    padding: '12px 24px',
+    borderRadius: '8px',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+    zIndex: 1000,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    maxWidth: '80%',
+  }}>
+    <span>{message}</span>
+    <button onClick={onClose} style={{ background: 'none', border: 'none', color: 'white', marginLeft: '16px', cursor: 'pointer', fontSize: '16px' }}>
+      &times;
+    </button>
+  </div>
+);
+
 export function App() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
@@ -23,11 +47,15 @@ export function App() {
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [isDebuggerVisible, setIsDebuggerVisible] = useState(false);
   const [lastAIResponse, setLastAIResponse] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const newSocket = io('http://localhost:3000');
     setSocket(newSocket);
-    newSocket.on('connect', () => setIsConnected(true));
+    newSocket.on('connect', () => {
+      setIsConnected(true);
+      setError(null);
+    });
     newSocket.on('disconnect', () => setIsConnected(false));
     newSocket.on('message', (message: GameMessage) =>
       setMessages((prev) => [message, ...prev])
@@ -37,6 +65,16 @@ export function App() {
       setGameState(newGameState);
     });
     newSocket.on('ai_debug', (data) => setLastAIResponse(data));
+
+    newSocket.on('error', (errorData: { message: string }) => {
+      console.error('Server Error:', errorData);
+      setError(errorData.message || 'An unknown error occurred.');
+    });
+
+    newSocket.on('connect_error', (err) => {
+      console.error('Connection Error:', err);
+      setError(`Connection failed: ${err.message}`);
+    });
 
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === '`') {
@@ -135,6 +173,7 @@ export function App() {
           onClose={() => setIsDebuggerVisible(false)}
         />
       )}
+      {error && <ErrorBanner message={error} onClose={() => setError(null)} />}
     </HostLayoutRoot>
   );
 }

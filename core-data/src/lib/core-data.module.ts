@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { CoreDataService } from './core-data.service';
 
 @Module({
-  providers: [],
-  exports: [],
+  providers: [CoreDataService],
+  exports: [CoreDataService],
 })
 export class CoreDataModule {}

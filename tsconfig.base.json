@@ -19,12 +19,14 @@
       "@dungeon-maister/backend": ["backend/src/main.ts"],
       "@dungeon-maister/core-data": ["core-data/src/index.ts"],
       "@dungeon-maister/data-models": ["data-models/src/index.ts"],
-      "@dungeon-maister/host-app": ["host-app/src/main.tsx"],
       "@dungeon-maister/game-session": ["game-session/src/index.ts"],
+      "@dungeon-maister/host-app": ["host-app/src/main.tsx"],
       "@dungeon-maister/llm-orchestrator": ["llm-orchestrator/src/index.ts"],
       "@dungeon-maister/mobile-app": ["mobile-app/src/main.tsx"],
       "@dungeon-maister/rule-engine": ["rule-engine/src/index.ts"],
-      "@dungeon-maister/ui-shared": ["ui-shared/src/index.ts"]
+      "@dungeon-maister/shared": ["shared/src/index.ts"],
+      "@dungeon-maister/ui-shared": ["ui-shared/src/index.ts"],
+      "@dungeon-maister/database": ["database/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
