@@ -6,6 +6,16 @@
   "tags": [],
   "// targets": "to see all targets run: nx show project llm-orchestrator --web",
   "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/llm-orchestrator",
+        "main": "llm-orchestrator/src/index.ts",
+        "tsConfig": "llm-orchestrator/tsconfig.lib.json",
+        "assets": ["llm-orchestrator/*.md"]
+      }
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/llm-orchestrator"],

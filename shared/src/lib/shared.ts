@@ -12,25 +12,25 @@ export class Logger {
     this.level = level;
   }
   
-  static debug(message: string, ...args: any[]) {
+  static debug(message: string, ...args: unknown[]) {
     if (this.level <= LogLevel.DEBUG) {
       console.debug(`[DEBUG] ${message}`, ...args);
     }
   }
   
-  static info(message: string, ...args: any[]) {
+  static info(message: string, ...args: unknown[]) {
     if (this.level <= LogLevel.INFO) {
       console.info(`[INFO] ${message}`, ...args);
     }
   }
   
-  static warn(message: string, ...args: any[]) {
+  static warn(message: string, ...args: unknown[]) {
     if (this.level <= LogLevel.WARN) {
       console.warn(`[WARN] ${message}`, ...args);
     }
   }
   
-  static error(message: string, ...args: any[]) {
+  static error(message: string, ...args: unknown[]) {
     if (this.level <= LogLevel.ERROR) {
       const formattedArgs = args.map(arg => {
         if (arg instanceof Error) {

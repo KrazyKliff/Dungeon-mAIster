@@ -5,6 +5,18 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/ui-shared",
+        "main": "ui-shared/src/index.ts",
+        "tsConfig": "ui-shared/tsconfig.lib.json",
+        "assets": [],
+        "project": "ui-shared/package.json",
+        "format": ["esm", "cjs"]
+      }
+    },
     "nx-release-publish": {
       "options": {
         "packageRoot": "dist/{projectRoot}"

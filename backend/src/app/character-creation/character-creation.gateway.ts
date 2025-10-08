@@ -126,34 +126,40 @@ export class CharacterCreationGateway {
       let nextStep: ChoiceStep | 'complete' = 'complete';
 
       switch (step) {
-        case 'kingdom':
+        case 'kingdom': {
           nextStep = 'species_feature';
           break;
-        case 'species_feature':
+        }
+        case 'species_feature': {
           const feature = getMammalFeatures().find(f => f.id === choiceId);
           if (feature) character = applySpeciesFeature(character, feature);
           nextStep = 'origin';
           break;
-        case 'origin':
+        }
+        case 'origin': {
           const origin = getOrigins().find(o => o.id === choiceId);
           if (origin) character = applyOrigin(character, origin);
           nextStep = 'life_event';
           break;
-        case 'life_event':
+        }
+        case 'life_event': {
           const lifeEvent = getLifeEvents().find(le => le.id === choiceId);
           if (lifeEvent) character = applyLifeEvent(character, lifeEvent);
           nextStep = 'career';
           break;
-        case 'career':
+        }
+        case 'career': {
           const career = getCareers().find(c => c.id === choiceId);
           if (career) character = applyCareer(character, career);
           nextStep = 'devotion';
           break;
-        case 'devotion':
+        }
+        case 'devotion': {
           const devotion = getDevotions().find(d => d.id === choiceId);
           if (devotion) character = applyDevotion(character, devotion);
           nextStep = 'complete';
           break;
+        }
         default:
           throw new ValidationError(`Invalid choice step during selection: ${step}`);
       }

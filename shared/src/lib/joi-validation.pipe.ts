@@ -6,7 +6,7 @@ import { ValidationError } from './error-handler.service';
 export class JoiValidationPipe implements PipeTransform {
   constructor(private schema: ObjectSchema) {}
 
-  transform(value: any, metadata: ArgumentMetadata) {
+  transform(value: unknown, _metadata: ArgumentMetadata) {
     const { error } = this.schema.validate(value);
     if (error) {
       const errorMessage = error.details.map((d) => d.message).join(', ');
